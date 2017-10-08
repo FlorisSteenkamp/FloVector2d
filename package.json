@@ -50,12 +50,9 @@
   },
   "scripts": {
     "build": "cd build && gulp",
-    "build-all": "npm run build && npm run build-copy",
-    "build-copy": "npm run build-copy-main && npm run build-copy-min && npm run build-copy-map",
     "coverage": "nyc --reporter=html --reporter=text mocha --compilers js:babel-core/register ./test/js",
     "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls",
     "jsdoc": "cd docs && jsdoc --template jsdoc-json --destination doc.json -c conf.json",
-    "jsdoc-all": "npm run jsdoc && npm run jsdoc-copy",
     "test": "npm run build && npm run test-only",
     "test-only": "mocha --compilers js:babel-core/register ./test/js"
   }

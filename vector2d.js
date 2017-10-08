@@ -507,14 +507,14 @@ function equal(a, b) {
 /**
  * Returns a rotated version of the given 2-vector given the sine and cosine of the angle.
  * @param {number[]} p 
- * @param {number} sinAngle 
- * @param {number} cosAngle 
+ * @param {number} sinθ
+ * @param {number} cosθ
  * @returns {number[]}
  */
-function rotate(p, sinAngle, cosAngle) {
+function rotate(p, sinθ, cosθ) {
 	return [
-		p[0]*cosAngle - p[1]*sinAngle, 
-		p[0]*sinAngle + p[1]*cosAngle
+		p[0]*cosθ - p[1]*sinθ, 
+		p[0]*sinθ + p[1]*cosθ
 	];
 }
 
