@@ -1,0 +1,61 @@
+{
+  "author": {
+    "name": "Floris Steenkamp"
+  },
+  "bugs": {
+    "url": "https://github.com/FlorisSteenkamp/FloVector2d/issues"
+  },
+  "description": "A purely function 2d vector library.",
+  "devDependencies": {
+    "babel-cli": "^6.22.2",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "babelify": "^7.3.0",
+    "browserify": "^13.1.0",
+    "chai": "^4.1.2",
+    "coveralls": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^2.0.0",
+    "istanbul": "^0.4.5",
+    "jsdoc": "3.4.x",
+    "mocha": "^3.5.3",
+    "nyc": "^11.2.1",
+    "transform": "^1.1.2",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "vinyl-transform": "^1.0.0"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "keywords": [
+    "functional",
+    "vector",
+    "2d",
+    "utilities",
+    "library"
+  ],
+  "license": "MIT",
+  "main": "dist/vector2d.js",
+  "name": "vector2d",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FlorisSteenkamp/FloVector2d.git"
+  },
+  "scripts": {
+    "build": "cd build && gulp",
+    "build-all": "npm run build && npm run build-copy",
+    "build-copy": "npm run build-copy-main && npm run build-copy-min && npm run build-copy-map",
+    "coverage": "nyc --reporter=html --reporter=text mocha --compilers js:babel-core/register ./test/js",
+    "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls",
+    "jsdoc": "cd docs && jsdoc --template jsdoc-json --destination doc.json -c conf.json",
+    "jsdoc-all": "npm run jsdoc && npm run jsdoc-copy",
+    "test": "npm run build && npm run test-only",
+    "test-only": "mocha --compilers js:babel-core/register ./test/js"
+  },
+  "version": "0.0.1"
+}

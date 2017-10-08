@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	
+	<title>Mocha Tests</title>
+	<link rel="stylesheet" href="../node_modules/mocha/mocha.css">
+</head>
+
+<body>
+	<div id="mocha"></div>
+    <script src="../node_modules/mocha/mocha.js"></script>
+	<script src="../node_modules/chai/chai.js"></script>
+	<script>mocha.setup('bdd')</script>
+
+    <script src="../dist/flo-vector2d.js"></script>
+   
+    <!--<script src="js/helpers/helper.js"></script>-->
+    
+	<script src="js/dot.js"></script>
+	<script src="js/cross.js"></script>
+	<script src="js/ccw.js"></script>
+	<script src="js/segSegIntersection.js"></script>
+	<script src="js/doesSegSegIntersect.js"></script>
+	<script src="js/squaredDistanceBetween.js"></script>
+	<script src="js/scale.js"></script>
+	<script src="js/reverse.js"></script>
+	<script src="js/toUnitVector.js"></script>
+	<script src="js/toLength.js"></script>
+	<script src="js/fromTo.js"></script>
+	<script src="js/interpolate.js"></script>
+	<script src="js/mean.js"></script>
+	<script src="js/distanceBetween.js"></script>
+	<script src="js/length.js"></script>
+	<script src="js/lengthSquared.js"></script>
+	<script src="js/manhattanDistanceBetween.js"></script>
+	<script src="js/manhattanLength.js"></script>
+	<script src="js/distanceBetweenPointAndLine.js"></script>
+	<script src="js/squaredDistanceBetweenPointAndLineSegment.js"></script>
+	<script src="js/circumCenter.js"></script>
+	<script src="js/inCenter.js"></script>
+	<script src="js/centroid.js"></script>
+	<script src="js/translate.js"></script>
+	<script src="js/equal.js"></script>
+	<script src="js/rotate.js"></script>
+	<script src="js/reverseRotate.js"></script>
+	<script src="js/rotateBy90Degrees.js"></script>
+	<script src="js/rotateByNeg90Degrees.js"></script>
+	<script src="js/transform.js"></script>
+	<script src="js/getClosestTo.js"></script>
+	<script src="js/translatePoints.js"></script>
+	<script src="js/rotatePoints.js"></script>
+	<script src="js/translateThenRotatePoints.js"></script>
+	<script src="js/rotateThenTranslatePoints.js"></script>
+
+	<script>
+		mocha.run();
+	</script>
+</body>
+
+</html>
