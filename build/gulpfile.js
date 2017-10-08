@@ -21,7 +21,7 @@ function browserifyDistTask() {
 	function showOnError(err) {	if (err) { console.error(err.stack); } } 
 	
     return browserify({
-    		entries: '../vector.js',
+    		entries: '../vector2d.js',
     		standalone: 'FloVector2d',
     	})
 		.transform("babelify", { presets: [env] })

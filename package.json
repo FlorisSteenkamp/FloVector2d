@@ -1,11 +1,28 @@
 {
+  "name": "flo-vector2d",
+  "description": "A purely function 2d vector library.",
+  "version": "0.0.1",
   "author": {
     "name": "Floris Steenkamp"
+  },
+  "license": "MIT",
+  "main": "dist/flo-vector2d.js",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FlorisSteenkamp/FloVector2d.git"
   },
   "bugs": {
     "url": "https://github.com/FlorisSteenkamp/FloVector2d/issues"
   },
-  "description": "A purely function 2d vector library.",
+  "keywords": [
+    "functional",
+    "vector",
+    "2d",
+    "utilities",
+    "library"
+  ],
+  "dependencies": {},
   "devDependencies": {
     "babel-cli": "^6.22.2",
     "babel-core": "^6.26.0",
@@ -20,8 +37,8 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^2.0.0",
     "istanbul": "^0.4.5",
-    "jsdoc": "3.4.x",
-    "mocha": "^3.5.3",
+    "jsdoc": "^3.5.5",
+    "mocha": "^4.0.1",
     "nyc": "^11.2.1",
     "transform": "^1.1.2",
     "vinyl-buffer": "^1.0.0",
@@ -30,21 +47,6 @@
   },
   "directories": {
     "test": "test"
-  },
-  "keywords": [
-    "functional",
-    "vector",
-    "2d",
-    "utilities",
-    "library"
-  ],
-  "license": "MIT",
-  "main": "dist/vector2d.js",
-  "name": "vector2d",
-  "private": false,
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/FlorisSteenkamp/FloVector2d.git"
   },
   "scripts": {
     "build": "cd build && gulp",
@@ -56,6 +58,5 @@
     "jsdoc-all": "npm run jsdoc && npm run jsdoc-copy",
     "test": "npm run build && npm run test-only",
     "test-only": "mocha --compilers js:babel-core/register ./test/js"
-  },
-  "version": "0.0.1"
+  }
 }

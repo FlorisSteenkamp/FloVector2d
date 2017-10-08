@@ -11,8 +11,8 @@ if (typeof require === 'undefined') {
 	// Node
 	mocha    = require('mocha');
 	chai     = require('chai');
-	helper   = require('helper/helper.js');
-	Vector2d = require('../../js/flo-vector-2d.js');
+	helper   = require('./helpers/helper.js');
+	Vector2d = require('../../vector2d.js');
 }
 
 var { assert, expect } = chai;

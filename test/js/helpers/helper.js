@@ -3,7 +3,7 @@
 var Vector2d;
 
 if (typeof require !== 'undefined') {
-	Vector2d = require('../../../js/flo-vector2d.js');
+	Vector2d = require('../../../vector2d.js');
 }
 
 var { } = Vector2d;
