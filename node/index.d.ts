@@ -253,8 +253,8 @@ declare function getClosestTo(p: number[], ps: number[][]): number[];
 * a distance function.
 * @param p
 * @param ps
-* @param f - Optional distance function - defaults to
-* squaredDistanceBetween.
+* @param f - Function that takes the object and returns a point in order to
+* apply the Euclidian distance.
 */
 declare function getObjClosestTo<T>(p: number[], ps: T[], f: (o: T) => number[]): T;
 /**

@@ -301,7 +301,13 @@ function circumCenter(triangle) {
     let Sx = 0.5 * det3([sqLen(p1), p1[1], 1], [sqLen(p2), p2[1], 1], [sqLen(p3), p3[1], 1]);
     let Sy = 0.5 * det3([p1[0], sqLen(p1), 1], [p2[0], sqLen(p2), 1], [p3[0], sqLen(p3), 1]);
     let a = det3([p1[0], p1[1], 1], [p2[0], p2[1], 1], [p3[0], p3[1], 1]);
-    let b = det3([p1[0], p1[1], sqLen(p1)], [p2[0], p2[1], sqLen(p2)], [p3[0], p3[1], sqLen(p3)]);
+    /*
+    let b = det3(
+            [p1[0], p1[1], sqLen(p1)],
+            [p2[0], p2[1], sqLen(p2)],
+            [p3[0], p3[1], sqLen(p3)]
+    );
+    */
     return [Sx / a, Sy / a];
 }
 exports.circumCenter = circumCenter;
@@ -493,8 +499,8 @@ exports.getClosestTo = getClosestTo;
 * a distance function.
 * @param p
 * @param ps
-* @param f - Optional distance function - defaults to
-* squaredDistanceBetween.
+* @param f - Function that takes the object and returns a point in order to
+* apply the Euclidian distance.
 */
 function getObjClosestTo(p, ps, f) {
     let closestObj = undefined; // Closest Point
