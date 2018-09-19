@@ -1,7 +1,7 @@
 {
   "name": "flo-vector2d",
   "description": "A purely function 2d vector library.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": {
     "name": "Floris Steenkamp"
   },
