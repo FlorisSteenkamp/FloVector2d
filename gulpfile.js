@@ -14,7 +14,7 @@ var tsify      = require("tsify");
 
 var tsProject  = ts.createProject("./tsconfig.json");
 
-gulp.task('default', browserTask);
+gulp.task('default', nodeTask);
 gulp.task('node',    nodeTask);
 gulp.task('browser', browserTask);
 
@@ -50,7 +50,7 @@ function browserTask() {
 	}
 	
     browserify({
-    		entries: '../index.ts',
+    		entries: 'index.ts',
     		standalone: 'FloVector2d',
    	})
 	.plugin(tsify)
