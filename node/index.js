@@ -1,18 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const DELTA = 1e-10;
-/**
- * Curry the given arity two function.
- * @param f - A function
- */
-function curry2(f) {
-    function g(t, u) {
-        return u === undefined
-            ? (u) => f(t, u)
-            : f(t, u);
-    }
-    return g;
-}
+const flo_numerical_1 = require("flo-numerical");
 /**
 * Creates a transformation function that operates on multiple points from the
 * given arity two function.
@@ -43,8 +31,8 @@ function specialMapCurry(f) {
 }
 /**
  * Returns the dot (inner) product between two 2-vectors.
- * @param a - The first vector
- * @param b - The second vector
+ * @param a the first vector
+ * @param b the second vector
  */
 function dot(a, b) {
     return a[0] * b[0] + a[1] * b[1];
@@ -61,67 +49,75 @@ function cross(a, b) {
 exports.cross = cross;
 /**
  * Three 2d points are a counter-clockwise turn if ccw > 0, clockwise if
- * ccw < 0, and colinear if ccw = 0 because ccw is a determinant that gives
- * twice the signed area of the triangle formed by p1, p2 and p3.
- * @param p1 - The first point
- * @param p2 - The second point
- * @param p3 - The third point
- * @param delta - The tolerance at which the three points are considered
- * collinear - defaults to 1e-10.
+ * ccw < 0, and colinear if ccw === 0 because ccw is a determinant that gives
+ * twice the signed area of the triangle formed by the points a, b and c.
+ * @param a The first point
+ * @param b The second point
+ * @param c The third point
  */
-function ccw(p1, p2, p3, delta = DELTA) {
-    let res = (p2[0] - p1[0]) * (p3[1] - p1[1]) -
-        (p2[1] - p1[1]) * (p3[0] - p1[0]);
-    return Math.abs(res) <= delta ? 0 : res;
+function ccw(a, b, c) {
+    return flo_numerical_1.orient2d(a, b, c);
 }
 exports.ccw = ccw;
 /**
-* <p>
 * Returns the point where two line segments intersect or undefined if they
-* don't intersect or a line if they intersect at infinitely many points.
-* </p>
-* <p>
-* See <a href="http://algs4.cs.princeton.edu/91primitives">Geometric primitves</a>
-* </p>
-* @param ab - The first line
-* @param cd - The second line
-* @param delta - The tolerance at which the lines are considered parallel -
-* defaults to 1e-10.
+* don't intersect or if they intersect at infinitely many points.
+* See Geometric primitves http://algs4.cs.princeton.edu/91primitives
+* @param ab The first line
+* @param cd The second line
 */
-function segSegIntersection(ab, cd, delta = DELTA) {
+function segSegIntersection(ab, cd) {
     let [a, b] = ab;
     let [c, d] = cd;
-    let denom = (b[0] - a[0]) * (d[1] - c[1]) - (b[1] - a[1]) * (d[0] - c[0]);
-    let rNumer = (a[1] - c[1]) * (d[0] - c[0]) - (a[0] - c[0]) * (d[1] - c[1]);
-    let sNumer = (a[1] - c[1]) * (b[0] - a[0]) - (a[0] - c[0]) * (b[1] - a[1]);
-    if (Math.abs(denom) <= delta) {
+    //let denom  = (b[0] - a[0])*(d[1] - c[1]) - (b[1] - a[1])*(d[0] - c[0]);
+    let denom = flo_numerical_1.calculate([
+        [flo_numerical_1.twoDiff(b[0], a[0]), flo_numerical_1.twoDiff(d[1], c[1])],
+        [flo_numerical_1.twoDiff(b[1], a[1]), flo_numerical_1.twoDiff(-d[0], -c[0])],
+    ]);
+    //let rNumer = (a[1] - c[1])*(d[0] - c[0]) - (a[0] - c[0])*(d[1] - c[1]);
+    let rNumer = flo_numerical_1.calculate([
+        [flo_numerical_1.twoDiff(a[1], c[1]), flo_numerical_1.twoDiff(d[0], c[0])],
+        [flo_numerical_1.twoDiff(a[0], c[0]), flo_numerical_1.twoDiff(-d[1], -c[1])],
+    ]);
+    //let sNumer = (a[1] - c[1]) * (b[0] - a[0]) - (a[0] - c[0]) * (b[1] - a[1]); 
+    let sNumer = flo_numerical_1.calculate([
+        [flo_numerical_1.twoDiff(a[1], c[1]), flo_numerical_1.twoDiff(b[0], a[0])],
+        [flo_numerical_1.twoDiff(a[0], c[0]), flo_numerical_1.twoDiff(-b[1], -a[1])],
+    ]);
+    if (denom[denom.length - 1] === 0) {
         // parallel
-        if (Math.abs(rNumer) <= delta) {
-            // colinear
+        if (rNumer[rNumer.length - 1] === 0) {
+            // collinear
             // TODO Check if x-projections and y-projections intersect
             // and return the line of intersection if they do.
             return undefined;
         }
         return undefined;
     }
-    let r = rNumer / denom;
-    let s = sNumer / denom;
-    if (0 <= r && r <= 1 && 0 <= s && s <= 1) {
-        return [a[0] + r * (b[0] - a[0]), a[1] + r * (b[1] - a[1])];
+    //let r = rNumer / denom;
+    //let s = sNumer / denom;
+    // if (0 <= r && r <= 1 && 0 <= s && s <= 1)
+    if (flo_numerical_1.sign(rNumer) * flo_numerical_1.sign(denom) >= 0 && flo_numerical_1.compare(denom, rNumer) >= 0 &&
+        flo_numerical_1.sign(sNumer) * flo_numerical_1.sign(denom) >= 0 && flo_numerical_1.compare(denom, sNumer) >= 0) {
+        let r = flo_numerical_1.estimate(rNumer) / flo_numerical_1.estimate(denom);
+        return [a[0] + r * b[0] - r * a[0], a[1] + r * b[1] - r * a[1]];
     }
     return undefined;
 }
 exports.segSegIntersection = segSegIntersection;
 /**
-* Returns true if the two given 2d line segments intersect, false otherwise.
-* @param a - A line segment
-* @param b - Another line segment
-*/
+ * Returns true if the two given 2d line segments intersect, false otherwise.
+ *
+ * Robust: uses exact adaptive floating point arithmetic.
+ *
+ * @param a A line segment
+ * @param b Another line segment
+ */
 function doesSegSegIntersect(a, b) {
-    if ((ccw(a[0], a[1], b[0]) * ccw(a[0], a[1], b[1])) > 0) {
+    if ((flo_numerical_1.orient2d(a[0], a[1], b[0]) * flo_numerical_1.orient2d(a[0], a[1], b[1])) > 0) {
         return false;
     }
-    else if ((ccw(b[0], b[1], a[0]) * ccw(b[0], b[1], a[1])) > 0) {
+    else if ((flo_numerical_1.orient2d(b[0], b[1], a[0]) * flo_numerical_1.orient2d(b[0], b[1], a[1])) > 0) {
         return false;
     }
     return true;
@@ -129,8 +125,8 @@ function doesSegSegIntersect(a, b) {
 exports.doesSegSegIntersect = doesSegSegIntersect;
 /**
 * Returns the squared distance between two 2d points.
-* @param p1 - A point
-* @param p2 - Another point
+* @param p1 A point
+* @param p2 Another point
 */
 function squaredDistanceBetween(p1, p2) {
     let x = p2[0] - p1[0];
@@ -463,23 +459,11 @@ function rotateNeg90Degrees(p) {
 }
 exports.rotateNeg90Degrees = rotateNeg90Degrees;
 /**
-* Transforms the given 2-vector by applying the given function to each
-* coordinate.
-* @param p - A 2d vector
-* @param f - A transformation function
-*/
-function transform(p, f) {
-    return [f(p[0]), f(p[1])];
-}
-exports.transform = transform;
-/**
-* Returns the closest point to the array of 2d points, optionally providing
-* a distance function.
-* @param p
-* @param ps
-* @param f - Optional distance function - defaults to
-* squaredDistanceBetween.
-*/
+ * Returns the closest point to the array of 2d points or if the array is empty
+ * returns undefined.
+ * @param p
+ * @param ps
+ */
 function getClosestTo(p, ps) {
     let closestPoint = undefined;
     let closestDistance = Number.POSITIVE_INFINITY;
@@ -495,13 +479,13 @@ function getClosestTo(p, ps) {
 }
 exports.getClosestTo = getClosestTo;
 /**
-* Returns the closest point to the array of 2d points, optionally providing
-* a distance function.
-* @param p
-* @param ps
-* @param f - Function that takes the object and returns a point in order to
-* apply the Euclidian distance.
-*/
+ * Returns the closest point to the array of 2d points by providing a distance
+ * function. If the given array is empty, returns undefined.
+ * @param p
+ * @param ps
+ * @param f a function that takes the object and returns a point in order to
+ * apply the Euclidian distance.
+ */
 function getObjClosestTo(p, ps, f) {
     let closestObj = undefined; // Closest Point
     let closestDistance = Number.POSITIVE_INFINITY;
@@ -541,5 +525,4 @@ function rotateThenTranslatePs(sinθ, cosθ, v, ps) {
     return ps.map(p => translate(v, rotate(sinθ, cosθ, p)));
 }
 exports.rotateThenTranslatePs = rotateThenTranslatePs;
-;
-//export  Vector2d;
+//# sourceMappingURL=index.js.map

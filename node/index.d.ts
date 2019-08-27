@@ -16,8 +16,8 @@ export interface ICurriedMapFunctionSpecial<S, T, U, V> {
 }
 /**
  * Returns the dot (inner) product between two 2-vectors.
- * @param a - The first vector
- * @param b - The second vector
+ * @param a the first vector
+ * @param b the second vector
  */
 declare function dot(a: number[], b: number[]): number;
 /**
@@ -28,39 +28,34 @@ declare function dot(a: number[], b: number[]): number;
 declare function cross(a: number[], b: number[]): number;
 /**
  * Three 2d points are a counter-clockwise turn if ccw > 0, clockwise if
- * ccw < 0, and colinear if ccw = 0 because ccw is a determinant that gives
- * twice the signed area of the triangle formed by p1, p2 and p3.
- * @param p1 - The first point
- * @param p2 - The second point
- * @param p3 - The third point
- * @param delta - The tolerance at which the three points are considered
- * collinear - defaults to 1e-10.
+ * ccw < 0, and colinear if ccw === 0 because ccw is a determinant that gives
+ * twice the signed area of the triangle formed by the points a, b and c.
+ * @param a The first point
+ * @param b The second point
+ * @param c The third point
  */
-declare function ccw(p1: number[], p2: number[], p3: number[], delta?: number): number;
+declare function ccw(a: number[], b: number[], c: number[]): number;
 /**
-* <p>
 * Returns the point where two line segments intersect or undefined if they
-* don't intersect or a line if they intersect at infinitely many points.
-* </p>
-* <p>
-* See <a href="http://algs4.cs.princeton.edu/91primitives">Geometric primitves</a>
-* </p>
-* @param ab - The first line
-* @param cd - The second line
-* @param delta - The tolerance at which the lines are considered parallel -
-* defaults to 1e-10.
+* don't intersect or if they intersect at infinitely many points.
+* See Geometric primitves http://algs4.cs.princeton.edu/91primitives
+* @param ab The first line
+* @param cd The second line
 */
-declare function segSegIntersection(ab: number[][], cd: number[][], delta?: number): number[];
+declare function segSegIntersection(ab: number[][], cd: number[][]): number[] | undefined;
 /**
-* Returns true if the two given 2d line segments intersect, false otherwise.
-* @param a - A line segment
-* @param b - Another line segment
-*/
+ * Returns true if the two given 2d line segments intersect, false otherwise.
+ *
+ * Robust: uses exact adaptive floating point arithmetic.
+ *
+ * @param a A line segment
+ * @param b Another line segment
+ */
 declare function doesSegSegIntersect(a: number[][], b: number[][]): boolean;
 /**
 * Returns the squared distance between two 2d points.
-* @param p1 - A point
-* @param p2 - Another point
+* @param p1 A point
+* @param p2 Another point
 */
 declare function squaredDistanceBetween(p1: number[], p2: number[]): number;
 /**
@@ -233,30 +228,21 @@ declare function rotate90Degrees(p: number[]): number[];
 */
 declare function rotateNeg90Degrees(p: number[]): number[];
 /**
-* Transforms the given 2-vector by applying the given function to each
-* coordinate.
-* @param p - A 2d vector
-* @param f - A transformation function
-*/
-declare function transform<T>(p: number[], f: (n: number) => T): T[];
+ * Returns the closest point to the array of 2d points or if the array is empty
+ * returns undefined.
+ * @param p
+ * @param ps
+ */
+declare function getClosestTo(p: number[], ps: number[][]): number[] | undefined;
 /**
-* Returns the closest point to the array of 2d points, optionally providing
-* a distance function.
-* @param p
-* @param ps
-* @param f - Optional distance function - defaults to
-* squaredDistanceBetween.
-*/
-declare function getClosestTo(p: number[], ps: number[][]): number[];
-/**
-* Returns the closest point to the array of 2d points, optionally providing
-* a distance function.
-* @param p
-* @param ps
-* @param f - Function that takes the object and returns a point in order to
-* apply the Euclidian distance.
-*/
-declare function getObjClosestTo<T>(p: number[], ps: T[], f: (o: T) => number[]): T;
+ * Returns the closest point to the array of 2d points by providing a distance
+ * function. If the given array is empty, returns undefined.
+ * @param p
+ * @param ps
+ * @param f a function that takes the object and returns a point in order to
+ * apply the Euclidian distance.
+ */
+declare function getObjClosestTo<T>(p: number[], ps: T[], f: (o: T) => number[]): T | undefined;
 /**
 * Returns an array of points by applying a translation and then rotation to
 * the given points.
@@ -275,43 +261,4 @@ declare function translateThenRotatePs(v: number[], sinθ: number, cosθ: number
 * @param ps - The input points
 **/
 declare function rotateThenTranslatePs(sinθ: number, cosθ: number, v: number[], ps: number[][]): number[][];
-export interface IVector2d {
-    dot: (a: number[], b: number[]) => number;
-    cross: (a: number[], b: number[]) => number;
-    ccw: (p1: number[], p2: number[], p3: number[], delta?: number) => number;
-    segSegIntersection: (ab: number[][], cd: number[][], delta?: number) => number[];
-    doesSegSegIntersect: (a: number[][], b: number[][]) => boolean;
-    squaredDistanceBetween: (p1: number[], p2: number[]) => number;
-    scale: (p: number[], factor: number) => number[];
-    reverse: (p: number[]) => number[];
-    toUnitVector: (p: number[]) => number[];
-    toLength: (p: number[], length: number) => number[];
-    fromTo: (p1: number[], p2: number[]) => number[];
-    interpolate: (p1: number[], p2: number[], t: number) => number[];
-    mean: (ps: [number[], number[]]) => number[];
-    distanceBetween: (p1: number[], p2: number[]) => number;
-    len: (p: number[]) => number;
-    lengthSquared: (v: number[]) => number;
-    manhattanDistanceBetween: (p1: number[], p2: number[]) => number;
-    manhattanLength: (p: number[]) => number;
-    distanceBetweenPointAndLine: (p: number[], l: number[][]) => number;
-    squaredDistanceBetweenPointAndLineSegment: (p: number[], l: number[][]) => number;
-    circumCenter: (triangle: number[][]) => number[];
-    inCenter: (triangle: number[][]) => number[];
-    centroid: (polygon: number[][]) => number[];
-    det3: (x: number[], y: number[], z: number[]) => number;
-    translate: (a: number[]) => ((b: number[]) => number[]);
-    translatePs: ICurriedMapFunction2<number[], number[], number[]>;
-    rotatePs: ICurriedMapFunctionSpecial<number, number, number[], number[]>;
-    rotate: (sinθ: number, cosθ: number) => (p: number[]) => number[];
-    equal: (a: number[], b: number[]) => boolean;
-    reverseRotate: (sinθ: number, cosθ: number, p: number[]) => number[];
-    rotate90Degrees: (p: number[]) => number[];
-    rotateNeg90Degrees: (p: number[]) => number[];
-    transform: <T>(p: number[], f: (n: number) => T) => T[];
-    getClosestTo: (p: number[], ps: number[][]) => number[];
-    translateThenRotatePs: (v: number[], sinθ: number, cosθ: number, ps: number[][]) => number[][];
-    rotateThenTranslatePs: (sinθ: number, cosθ: number, v: number[], ps: number[][]) => number[][];
-    getObjClosestTo: <T>(p: number[], ps: T[], f: (o: T) => number[]) => T;
-}
-export { dot, cross, ccw, segSegIntersection, doesSegSegIntersect, squaredDistanceBetween, scale, reverse, toUnitVector, toLength, fromTo, interpolate, mean, distanceBetween, len, lengthSquared, manhattanDistanceBetween, manhattanLength, distanceBetweenPointAndLine, squaredDistanceBetweenPointAndLineSegment, circumCenter, inCenter, centroid, det3, translate, translatePs, rotatePs, rotate, equal, reverseRotate, rotate90Degrees, rotateNeg90Degrees, transform, getClosestTo, translateThenRotatePs, rotateThenTranslatePs, getObjClosestTo };
+export { dot, cross, segSegIntersection, doesSegSegIntersect, squaredDistanceBetween, scale, reverse, toUnitVector, toLength, fromTo, interpolate, mean, distanceBetween, len, lengthSquared, manhattanDistanceBetween, manhattanLength, distanceBetweenPointAndLine, squaredDistanceBetweenPointAndLineSegment, circumCenter, inCenter, centroid, det3, translate, translatePs, rotatePs, rotate, equal, reverseRotate, rotate90Degrees, rotateNeg90Degrees, getClosestTo, translateThenRotatePs, rotateThenTranslatePs, getObjClosestTo, ccw };
