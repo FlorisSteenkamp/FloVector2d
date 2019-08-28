@@ -1,5 +1,8 @@
 
-import { orient2d, calculate, twoDiff, sign, compare, estimate } from 'flo-numerical';
+import { 
+    orient2d, twoDiff, sign, compare, estimate, expansionDiff, 
+    expansionProduct, abs, twoSum 
+} from 'flo-numerical';
 
 
 export interface ICurriedFunction2<T, U, V> {
@@ -117,23 +120,28 @@ function segSegIntersection(
     let [a,b] = ab;
     let [c,d] = cd;
 
+    let [a0, a1] = a;
+    let [b0, b1] = b;
+    let [c0, c1] = c;
+    let [d0, d1] = d;
+
     //let denom  = (b[0] - a[0])*(d[1] - c[1]) - (b[1] - a[1])*(d[0] - c[0]);
-    let denom = calculate([
-        [twoDiff(b[0], a[0]), twoDiff(d[1], c[1])],
-        [twoDiff(b[1], a[1]), twoDiff(-d[0], -c[0])],
-    ]);
+    let denom = expansionDiff(
+        expansionProduct(twoDiff(b0, a0), twoDiff(d1, c1)),
+        expansionProduct(twoDiff(b1, a1), twoDiff(d0, c0))
+    );
 
     //let rNumer = (a[1] - c[1])*(d[0] - c[0]) - (a[0] - c[0])*(d[1] - c[1]);
-    let rNumer = calculate([
-        [twoDiff(a[1], c[1]), twoDiff(d[0], c[0])],
-        [twoDiff(a[0], c[0]), twoDiff(-d[1], -c[1])],
-    ]);
-    
+    let rNumer = expansionDiff(
+        expansionProduct(twoDiff(a1, c1), twoDiff(d0, c0)),
+        expansionProduct(twoDiff(a0, c0), twoDiff(d1, c1)),
+    );
+
     //let sNumer = (a[1] - c[1]) * (b[0] - a[0]) - (a[0] - c[0]) * (b[1] - a[1]); 
-    let sNumer = calculate([
-        [twoDiff(a[1], c[1]), twoDiff(b[0], a[0])],
-        [twoDiff(a[0], c[0]), twoDiff(-b[1], -a[1])],
-    ]);
+    let sNumer = expansionDiff(
+        expansionProduct(twoDiff(a1, c1), twoDiff(b0, a0)),
+        expansionProduct(twoDiff(a0, c0), twoDiff(b1, a1)),
+    );
 
     if (denom[denom.length-1] === 0) {
         // parallel
@@ -150,12 +158,22 @@ function segSegIntersection(
     //let s = sNumer / denom;
 
     // if (0 <= r && r <= 1 && 0 <= s && s <= 1)
-    if (sign(rNumer) * sign(denom) >= 0 && compare(denom, rNumer) >= 0 &&
-        sign(sNumer) * sign(denom) >= 0 && compare(denom, sNumer) >= 0) {
+    if (sign(rNumer) * sign(denom) >= 0 && compare(abs(denom), abs(rNumer)) >= 0 &&
+        sign(sNumer) * sign(denom) >= 0 && compare(abs(denom), abs(sNumer)) >= 0) {
 
         let r = estimate(rNumer) / estimate(denom);
 
-        return [a[0] + r*b[0] - r*a[0], a[1] + r*b[1] - r*a[1]];
+        //return [a0 + r*(b0 - a0), a1 + r*(b1 - a1)];
+        return [
+            estimate(twoSum(
+                estimate(expansionProduct(twoDiff(b0, a0), rNumer)) / estimate(denom), 
+                a0
+            )),
+            estimate(twoSum(
+                estimate(expansionProduct(twoDiff(b1, a1), rNumer)) / estimate(denom), 
+                a1
+            ))
+        ];
     } 
 
     return undefined;
@@ -173,7 +191,9 @@ function segSegIntersection(
 function doesSegSegIntersect(a: number[][], b: number[][]): boolean {
     if ((orient2d(a[0], a[1], b[0]) * orient2d(a[0], a[1], b[1])) > 0) {
         return false;
-    } else if ((orient2d(b[0], b[1], a[0]) * orient2d(b[0], b[1], a[1])) > 0) {
+    } 
+    
+    if ((orient2d(b[0], b[1], a[0]) * orient2d(b[0], b[1], a[1])) > 0) {
         return false;
     }
 
