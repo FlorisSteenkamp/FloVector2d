@@ -1,3 +1,4 @@
+import { lineLineIntersection } from './line-line-intersection';
 export interface ICurriedFunction2<T, U, V> {
     (t: T): (u2: U) => V;
     (t: T, u: U): V;
@@ -106,7 +107,7 @@ declare function mean(ps: [number[], number[]]): number[];
 declare function distanceBetween(p1: number[], p2: number[]): number;
 /**
 * Returns the length of the given 2-vector.
-* @param p - A vector
+* @param p A 2d vector
 */
 declare function len(p: number[]): number;
 /**
@@ -161,7 +162,7 @@ declare function inCenter(triangle: number[][]): number[];
 /**
 * Returns the centroid of the given polygon, e.g. triangle. The polygon
 * must be simple, i.e. not self-intersecting.
-* @param polygon
+* @param polygon_
 */
 declare function centroid(polygon: number[][]): number[];
 /**
@@ -261,4 +262,4 @@ declare function translateThenRotatePs(v: number[], sinθ: number, cosθ: number
 * @param ps - The input points
 **/
 declare function rotateThenTranslatePs(sinθ: number, cosθ: number, v: number[], ps: number[][]): number[][];
-export { dot, cross, segSegIntersection, doesSegSegIntersect, squaredDistanceBetween, scale, reverse, toUnitVector, toLength, fromTo, interpolate, mean, distanceBetween, len, lengthSquared, manhattanDistanceBetween, manhattanLength, distanceBetweenPointAndLine, squaredDistanceBetweenPointAndLineSegment, circumCenter, inCenter, centroid, det3, translate, translatePs, rotatePs, rotate, equal, reverseRotate, rotate90Degrees, rotateNeg90Degrees, getClosestTo, translateThenRotatePs, rotateThenTranslatePs, getObjClosestTo, ccw };
+export { dot, cross, segSegIntersection, doesSegSegIntersect, squaredDistanceBetween, scale, reverse, toUnitVector, toLength, fromTo, interpolate, mean, distanceBetween, len, lengthSquared, manhattanDistanceBetween, manhattanLength, distanceBetweenPointAndLine, squaredDistanceBetweenPointAndLineSegment, circumCenter, inCenter, centroid, det3, translate, translatePs, rotatePs, rotate, equal, reverseRotate, rotate90Degrees, rotateNeg90Degrees, getClosestTo, translateThenRotatePs, rotateThenTranslatePs, getObjClosestTo, ccw, lineLineIntersection };
