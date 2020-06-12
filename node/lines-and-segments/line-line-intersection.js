@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.lineLineIntersection = void 0;
 /**
  * Find point where two lines intersect. Returns he point where the two lines
  * intersect or undefined if they don't intersect or are the same line.
