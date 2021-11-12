@@ -1,6 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.manhattanLength = void 0;
 /**
  * Returns the Manhattan length of the given 2-vector.
  * @param p a vector
@@ -8,5 +5,5 @@ exports.manhattanLength = void 0;
 function manhattanLength(p) {
     return Math.abs(p[0]) + Math.abs(p[1]);
 }
-exports.manhattanLength = manhattanLength;
+export { manhattanLength };
 //# sourceMappingURL=manhattan-length.js.map

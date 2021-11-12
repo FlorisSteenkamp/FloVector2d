@@ -1,6 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.squaredDistanceBetween = void 0;
 /**
  * Returns the squared distance between two 2d points.
  * @param p a point
@@ -11,5 +8,5 @@ function squaredDistanceBetween(p, q) {
     let y = q[1] - p[1];
     return x * x + y * y;
 }
-exports.squaredDistanceBetween = squaredDistanceBetween;
+export { squaredDistanceBetween };
 //# sourceMappingURL=squared-distance-between.js.map

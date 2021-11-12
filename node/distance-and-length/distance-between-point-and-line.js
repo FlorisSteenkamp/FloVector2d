@@ -1,6 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.distanceBetweenPointAndLine = void 0;
 /**
  * Returns the distance between the given point and line.
  * * see https://en.wikipedia.org/wiki/Distance_from_a_point_to_a_line#Line_defined_by_two_points
@@ -16,5 +13,5 @@ function distanceBetweenPointAndLine(p, l) {
     let b = Math.sqrt(x * x + y * y);
     return Math.abs(a / b);
 }
-exports.distanceBetweenPointAndLine = distanceBetweenPointAndLine;
+export { distanceBetweenPointAndLine };
 //# sourceMappingURL=distance-between-point-and-line.js.map

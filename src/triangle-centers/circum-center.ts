@@ -1,6 +1,5 @@
-
-import { lengthSquared } from "../distance-and-length/length-squared";
-import { det3 } from "../matrix/det";
+import { lengthSquared } from "../distance-and-length/length-squared.js";
+import { det3 } from "../matrix/det.js";
 
 
 /**

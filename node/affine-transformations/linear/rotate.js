@@ -1,6 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.rotate = void 0;
 function rotate(sinθ, cosθ, p) {
     function rotateByθ(p) {
         return [
@@ -11,5 +8,5 @@ function rotate(sinθ, cosθ, p) {
     // Curry the function
     return p === undefined ? rotateByθ : rotateByθ(p);
 }
-exports.rotate = rotate;
+export { rotate };
 //# sourceMappingURL=rotate.js.map

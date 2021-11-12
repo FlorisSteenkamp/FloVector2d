@@ -1,8 +1,7 @@
-
 import { 
-    twoDiff, sign, compare, estimate, expansionDiff, 
-    expansionProduct, abs, twoSum 
-} from 'flo-numerical';
+    twoDiff, eSign, eCompare, eEstimate, eDiff, 
+    expansionProduct, eAbs, twoSum 
+} from 'big-float-ts';
 
 
 /**
@@ -26,19 +25,19 @@ function segSegIntersection(
     let [d0, d1] = d;
 
     //let denom  = (b[0] - a[0])*(d[1] - c[1]) - (b[1] - a[1])*(d[0] - c[0]);
-    let denom = expansionDiff(
+    let denom = eDiff(
         expansionProduct(twoDiff(b0, a0), twoDiff(d1, c1)),
         expansionProduct(twoDiff(b1, a1), twoDiff(d0, c0))
     );
 
     //let rNumer = (a[1] - c[1])*(d[0] - c[0]) - (a[0] - c[0])*(d[1] - c[1]);
-    let rNumer = expansionDiff(
+    let rNumer = eDiff(
         expansionProduct(twoDiff(a1, c1), twoDiff(d0, c0)),
         expansionProduct(twoDiff(a0, c0), twoDiff(d1, c1)),
     );
 
     //let sNumer = (a[1] - c[1]) * (b[0] - a[0]) - (a[0] - c[0]) * (b[1] - a[1]); 
-    let sNumer = expansionDiff(
+    let sNumer = eDiff(
         expansionProduct(twoDiff(a1, c1), twoDiff(b0, a0)),
         expansionProduct(twoDiff(a0, c0), twoDiff(b1, a1)),
     );
@@ -58,19 +57,19 @@ function segSegIntersection(
     //let s = sNumer / denom;
 
     // if (0 <= r && r <= 1 && 0 <= s && s <= 1)
-    if (sign(rNumer) * sign(denom) >= 0 && compare(abs(denom), abs(rNumer)) >= 0 &&
-        sign(sNumer) * sign(denom) >= 0 && compare(abs(denom), abs(sNumer)) >= 0) {
+    if (eSign(rNumer) * eSign(denom) >= 0 && eCompare(eAbs(denom), eAbs(rNumer)) >= 0 &&
+        eSign(sNumer) * eSign(denom) >= 0 && eCompare(eAbs(denom), eAbs(sNumer)) >= 0) {
 
-        let r = estimate(rNumer) / estimate(denom);
+        let r = eEstimate(rNumer) / eEstimate(denom);
 
         //return [a0 + r*(b0 - a0), a1 + r*(b1 - a1)];
         return [
-            estimate(twoSum(
-                estimate(expansionProduct(twoDiff(b0, a0), rNumer)) / estimate(denom), 
+            eEstimate(twoSum(
+                eEstimate(expansionProduct(twoDiff(b0, a0), rNumer)) / eEstimate(denom), 
                 a0
             )),
-            estimate(twoSum(
-                estimate(expansionProduct(twoDiff(b1, a1), rNumer)) / estimate(denom), 
+            eEstimate(twoSum(
+                eEstimate(expansionProduct(twoDiff(b1, a1), rNumer)) / eEstimate(denom), 
                 a1
             ))
         ];

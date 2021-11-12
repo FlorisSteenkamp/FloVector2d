@@ -1,14 +1,11 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.squaredDistanceBetweenPointAndLineSegment = void 0;
-const squared_distance_between_1 = require("./squared-distance-between");
+import { squaredDistanceBetween } from "./squared-distance-between.js";
 /**
  * Returns the squared distance between the given point and line segment.
  * @param p a point
  * @param l a line
  */
 function squaredDistanceBetweenPointAndLineSegment(p, l) {
-    const sqDst = squared_distance_between_1.squaredDistanceBetween;
+    const sqDst = squaredDistanceBetween;
     let v = l[0];
     let w = l[1];
     let l2 = sqDst(v, w);
@@ -20,5 +17,5 @@ function squaredDistanceBetweenPointAndLineSegment(p, l) {
     let d2 = sqDst(p, [v[0] + t * (w[0] - v[0]), v[1] + t * (w[1] - v[1])]);
     return d2;
 }
-exports.squaredDistanceBetweenPointAndLineSegment = squaredDistanceBetweenPointAndLineSegment;
+export { squaredDistanceBetweenPointAndLineSegment };
 //# sourceMappingURL=squared-distance-between-point-and-line-segment.js.map

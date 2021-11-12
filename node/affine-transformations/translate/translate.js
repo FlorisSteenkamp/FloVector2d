@@ -1,10 +1,7 @@
-"use strict";
 // From: https://en.wikipedia.org/wiki/Affine_transformation
 // "If X is the point set of an affine space, then every affine transformation 
 // on X can be represented as the composition of a linear transformation on X 
 // and a translation of X"
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.translate = void 0;
 function translate(a, b) {
     function f(b) {
         return [a[0] + b[0], a[1] + b[1]];
@@ -12,5 +9,5 @@ function translate(a, b) {
     // Curry the function
     return b === undefined ? f : f(b);
 }
-exports.translate = translate;
+export { translate };
 //# sourceMappingURL=translate.js.map

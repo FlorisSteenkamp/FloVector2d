@@ -1,6 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.reverseRotate = void 0;
 /**
  * Returns a rotated (clockwise) version of the given 2-vector given the
  * sine and cosine of the angle.
@@ -14,5 +11,5 @@ function reverseRotate(sinθ, cosθ, p) {
         -p[0] * sinθ + p[1] * cosθ
     ];
 }
-exports.reverseRotate = reverseRotate;
+export { reverseRotate };
 //# sourceMappingURL=reverse-rotate.js.map

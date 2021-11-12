@@ -1,6 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.centroid = void 0;
 /**
 * Returns the centroid of the given polygon, e.g. triangle. The polygon
 * must be simple, i.e. not self-intersecting.
@@ -59,5 +56,5 @@ function centroid(polygon) {
     }
     return [C[0] / (6 * A), C[1] / (6 * A)];
 }
-exports.centroid = centroid;
+export { centroid };
 //# sourceMappingURL=centroid.js.map

@@ -1,6 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.cross = void 0;
 /**
  * Returns the cross product signed magnitude between two 2-vectors.
  * @param a the first vector
@@ -9,5 +6,5 @@ exports.cross = void 0;
 function cross(a, b) {
     return a[0] * b[1] - a[1] * b[0];
 }
-exports.cross = cross;
+export { cross };
 //# sourceMappingURL=cross.js.map

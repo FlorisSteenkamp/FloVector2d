@@ -1,5 +1,5 @@
 
-import { squaredDistanceBetween } from "./squared-distance-between";
+import { squaredDistanceBetween } from "./squared-distance-between.js";
 
 
 /**

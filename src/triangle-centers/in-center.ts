@@ -1,5 +1,5 @@
 
-import { distanceBetween } from "../distance-and-length/distance-between";
+import { distanceBetween } from "../distance-and-length/distance-between.js";
 
 
 /** 

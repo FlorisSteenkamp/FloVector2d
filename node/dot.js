@@ -1,6 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.dot = void 0;
 /**
  * Returns the dot (inner) product between two 2-vectors.
  * @param a the first vector
@@ -9,5 +6,5 @@ exports.dot = void 0;
 function dot(a, b) {
     return a[0] * b[0] + a[1] * b[1];
 }
-exports.dot = dot;
+export { dot };
 //# sourceMappingURL=dot.js.map
