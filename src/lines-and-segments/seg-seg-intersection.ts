@@ -1,7 +1,9 @@
-import { 
-    twoDiff, eSign, eCompare, eEstimate, eDiff, 
-    expansionProduct, eAbs, twoSum 
-} from 'big-float-ts';
+import { expansionProduct } from 'big-float-ts';
+import { twoDiff, eSign, eCompare, eEstimate, eDiff, eAbs, twoSum } from 'big-float-ts';
+
+
+const epr = expansionProduct;
+const td = twoDiff;
 
 
 /**
@@ -26,20 +28,20 @@ function segSegIntersection(
 
     //let denom  = (b[0] - a[0])*(d[1] - c[1]) - (b[1] - a[1])*(d[0] - c[0]);
     let denom = eDiff(
-        expansionProduct(twoDiff(b0, a0), twoDiff(d1, c1)),
-        expansionProduct(twoDiff(b1, a1), twoDiff(d0, c0))
+        epr(td(b0, a0), td(d1, c1)),
+        epr(td(b1, a1), td(d0, c0))
     );
 
     //let rNumer = (a[1] - c[1])*(d[0] - c[0]) - (a[0] - c[0])*(d[1] - c[1]);
     let rNumer = eDiff(
-        expansionProduct(twoDiff(a1, c1), twoDiff(d0, c0)),
-        expansionProduct(twoDiff(a0, c0), twoDiff(d1, c1)),
+        epr(td(a1, c1), td(d0, c0)),
+        epr(td(a0, c0), td(d1, c1)),
     );
 
     //let sNumer = (a[1] - c[1]) * (b[0] - a[0]) - (a[0] - c[0]) * (b[1] - a[1]); 
     let sNumer = eDiff(
-        expansionProduct(twoDiff(a1, c1), twoDiff(b0, a0)),
-        expansionProduct(twoDiff(a0, c0), twoDiff(b1, a1)),
+        epr(td(a1, c1), td(b0, a0)),
+        epr(td(a0, c0), td(b1, a1)),
     );
 
     if (denom[denom.length-1] === 0) {
@@ -65,11 +67,11 @@ function segSegIntersection(
         //return [a0 + r*(b0 - a0), a1 + r*(b1 - a1)];
         return [
             eEstimate(twoSum(
-                eEstimate(expansionProduct(twoDiff(b0, a0), rNumer)) / eEstimate(denom), 
+                eEstimate(epr(td(b0, a0), rNumer)) / eEstimate(denom), 
                 a0
             )),
             eEstimate(twoSum(
-                eEstimate(expansionProduct(twoDiff(b1, a1), rNumer)) / eEstimate(denom), 
+                eEstimate(epr(td(b1, a1), rNumer)) / eEstimate(denom), 
                 a1
             ))
         ];

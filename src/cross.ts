@@ -5,7 +5,7 @@
  * @param b the second vector
  */
 function cross(a: number[], b: number[]): number {
-    return a[0]*b[1] - a[1]*b[0]; 
+    return a[0]*b[1] - a[1]*b[0];
 }
 
 

@@ -5,7 +5,7 @@
  * @param b the second vector
  */
 function dot(a: number[], b: number[]): number {
-    return a[0]*b[0] + a[1]*b[1]; 
+    return a[0]*b[0] + a[1]*b[1];
 }
 
 

@@ -1981,6 +1981,9 @@ function cross(a, b) {
 
 ;// CONCATENATED MODULE: ./src/lines-and-segments/seg-seg-intersection.ts
 
+
+const epr = expansionProduct;
+const td = twoDiff;
 /**
 * Returns the point where two line segments intersect or undefined if they
 * don't intersect or if they intersect at infinitely many points.
@@ -1997,11 +2000,11 @@ function segSegIntersection(ab, cd) {
     let [c0, c1] = c;
     let [d0, d1] = d;
     //let denom  = (b[0] - a[0])*(d[1] - c[1]) - (b[1] - a[1])*(d[0] - c[0]);
-    let denom = eDiff(expansionProduct(twoDiff(b0, a0), twoDiff(d1, c1)), expansionProduct(twoDiff(b1, a1), twoDiff(d0, c0)));
+    let denom = eDiff(epr(td(b0, a0), td(d1, c1)), epr(td(b1, a1), td(d0, c0)));
     //let rNumer = (a[1] - c[1])*(d[0] - c[0]) - (a[0] - c[0])*(d[1] - c[1]);
-    let rNumer = eDiff(expansionProduct(twoDiff(a1, c1), twoDiff(d0, c0)), expansionProduct(twoDiff(a0, c0), twoDiff(d1, c1)));
+    let rNumer = eDiff(epr(td(a1, c1), td(d0, c0)), epr(td(a0, c0), td(d1, c1)));
     //let sNumer = (a[1] - c[1]) * (b[0] - a[0]) - (a[0] - c[0]) * (b[1] - a[1]); 
-    let sNumer = eDiff(expansionProduct(twoDiff(a1, c1), twoDiff(b0, a0)), expansionProduct(twoDiff(a0, c0), twoDiff(b1, a1)));
+    let sNumer = eDiff(epr(td(a1, c1), td(b0, a0)), epr(td(a0, c0), td(b1, a1)));
     if (denom[denom.length - 1] === 0) {
         // parallel
         if (rNumer[rNumer.length - 1] === 0) {
@@ -2020,8 +2023,8 @@ function segSegIntersection(ab, cd) {
         let r = eEstimate(rNumer) / eEstimate(denom);
         //return [a0 + r*(b0 - a0), a1 + r*(b1 - a1)];
         return [
-            eEstimate(two_sum_twoSum(eEstimate(expansionProduct(twoDiff(b0, a0), rNumer)) / eEstimate(denom), a0)),
-            eEstimate(two_sum_twoSum(eEstimate(expansionProduct(twoDiff(b1, a1), rNumer)) / eEstimate(denom), a1))
+            eEstimate(two_sum_twoSum(eEstimate(epr(td(b0, a0), rNumer)) / eEstimate(denom), a0)),
+            eEstimate(two_sum_twoSum(eEstimate(epr(td(b1, a1), rNumer)) / eEstimate(denom), a1))
         ];
     }
     return undefined;
