@@ -66,8 +66,8 @@ function interpolate(p, q, t) {
  * @param ps the two points
  */
 function mean(ps) {
-    let p = ps[0];
-    let q = ps[1];
+    const p = ps[0];
+    const q = ps[1];
     return [(p[0] + q[0]) / 2, (p[1] + q[1]) / 2];
 }
 /**
@@ -88,8 +88,8 @@ function getClosestTo(p, ps) {
     let closestPoint = undefined;
     let closestDistance = Number.POSITIVE_INFINITY;
     for (let i = 0; i < ps.length; i++) {
-        let q = ps[i];
-        let d = squaredDistanceBetween(p, q);
+        const q = ps[i];
+        const d = squaredDistanceBetween(p, q);
         if (d < closestDistance) {
             closestPoint = q;
             closestDistance = d;
@@ -109,8 +109,8 @@ function getObjClosestTo(p, ps, f) {
     let closestObj = undefined; // Closest Point
     let closestDistance = Number.POSITIVE_INFINITY;
     for (let i = 0; i < ps.length; i++) {
-        let o = ps[i];
-        let d = squaredDistanceBetween(p, f(o));
+        const o = ps[i];
+        const d = squaredDistanceBetween(p, f(o));
         if (d < closestDistance) {
             closestObj = o;
             closestDistance = d;

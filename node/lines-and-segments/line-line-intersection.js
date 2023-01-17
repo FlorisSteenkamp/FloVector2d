@@ -6,18 +6,18 @@
  * @param l2 Another line
  */
 function lineLineIntersection(l1, l2) {
-    let [[x1, y1], [x2, y2]] = l1;
-    let [[x3, y3], [x4, y4]] = l2;
-    let x1_ = x2 - x1;
-    let y1_ = y2 - y1;
-    let x2_ = x4 - x3;
-    let y2_ = y4 - y3;
-    let denom = x2_ * y1_ - y2_ * x1_;
+    const [[x1, y1], [x2, y2]] = l1;
+    const [[x3, y3], [x4, y4]] = l2;
+    const x1_ = x2 - x1;
+    const y1_ = y2 - y1;
+    const x2_ = x4 - x3;
+    const y2_ = y4 - y3;
+    const denom = x2_ * y1_ - y2_ * x1_;
     if (denom === 0) {
         // parallel
         return undefined;
     }
-    let b = ((y3 - y1) * x1_ - (x3 - x1) * y1_) / denom;
+    const b = ((y3 - y1) * x1_ - (x3 - x1) * y1_) / denom;
     return [
         x3 + b * x2_,
         y3 + b * y2_

@@ -5,12 +5,12 @@
  * @param l a line
  */
 function distanceBetweenPointAndLine(p, l) {
-    let [x0, y0] = p;
-    let [[x1, y1], [x2, y2]] = l;
-    let y = y2 - y1;
-    let x = x2 - x1;
-    let a = (y * x0 - x * y0 + x2 * y1 - y2 * x1);
-    let b = Math.sqrt(x * x + y * y);
+    const [x0, y0] = p;
+    const [[x1, y1], [x2, y2]] = l;
+    const y = y2 - y1;
+    const x = x2 - x1;
+    const a = (y * x0 - x * y0 + x2 * y1 - y2 * x1);
+    const b = Math.sqrt(x * x + y * y);
     return Math.abs(a / b);
 }
 export { distanceBetweenPointAndLine };

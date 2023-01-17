@@ -5,15 +5,15 @@
 * @param polygon_ 
 */
 function centroid(polygon: number[][]): number[] {
-    let polygon_: number[][] = [];
+    const polygon_: number[][] = [];
 
     if (polygon.length === 1) { return polygon[0]; }
     
     // remove duplicate points
     let prevP = polygon[polygon.length-1];
     for (let i=0; i<polygon.length; i++) {
-        let [_x, _y] = prevP;
-        let [x,y] = polygon[i];
+        const [_x, _y] = prevP;
+        const [x,y] = polygon[i];
         prevP = [x,y];
         
         if (x !== _x || y !== _y) {
@@ -22,22 +22,22 @@ function centroid(polygon: number[][]): number[] {
     }
 
     if (polygon_.length === 2) {
-        let p1 = polygon_[0];
-        let p2 = polygon_[1];
+        const p1 = polygon_[0];
+        const p2 = polygon_[1];
         
-        let x = p1[0] + p2[0]; 
-        let y = p1[1] + p2[1];
+        const x = p1[0] + p2[0]; 
+        const y = p1[1] + p2[1];
         
         return [x/2, y/2];
     }
 
     if (polygon_.length === 3) {
-        let p1 = polygon_[0];
-        let p2 = polygon_[1];
-        let p3 = polygon_[2];
+        const p1 = polygon_[0];
+        const p2 = polygon_[1];
+        const p3 = polygon_[2];
         
-        let x = p1[0] + p2[0] + p3[0]; 
-        let y = p1[1] + p2[1] + p3[1];
+        const x = p1[0] + p2[0] + p3[0]; 
+        const y = p1[1] + p2[1] + p3[1];
         
         return [x/3, y/3];
     }
@@ -48,8 +48,8 @@ function centroid(polygon: number[][]): number[] {
     // First calculate the area, A, of the polygon
     let A = 0;
     for (let i=0; i<polygon_.length; i++) {
-        let p0 = polygon_[i];
-        let p1 = (i === polygon_.length-1) 
+        const p0 = polygon_[i];
+        const p1 = (i === polygon_.length-1) 
             ? polygon_[0]
             : polygon_[i+1];
             
@@ -57,10 +57,10 @@ function centroid(polygon: number[][]): number[] {
     }
     A = A/2;
 
-    let C = [0,0];
+    const C = [0,0];
     for (let i=0; i<polygon_.length; i++) {
-        let p0 = polygon_[i];
-        let p1 = (i === polygon_.length-1) 
+        const p0 = polygon_[i];
+        const p1 = (i === polygon_.length-1) 
             ? polygon_[0]
             : polygon_[i+1];
             

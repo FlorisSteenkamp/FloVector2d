@@ -4,7 +4,7 @@
  * @param p a vector
  */
 function toUnitVector(p: number[]): number[] {
-    let scaleFactor = 1 / (Math.sqrt(p[0]*p[0] + p[1]*p[1]));
+    const scaleFactor = 1 / (Math.sqrt(p[0]*p[0] + p[1]*p[1]));
 
     return [p[0] * scaleFactor, p[1] * scaleFactor];
 }

@@ -4,7 +4,7 @@
  * @param length the length to scale to
  */
 function toLength(p, length) {
-    let c = length / Math.sqrt(p[0] * p[0] + p[1] * p[1]);
+    const c = length / Math.sqrt(p[0] * p[0] + p[1] * p[1]);
     return [c * p[0], c * p[1]];
 }
 export { toLength };
