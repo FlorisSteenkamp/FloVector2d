@@ -24,41 +24,41 @@ var __webpack_exports__ = {};
 
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, {
-  "oH": () => (/* binding */ ccw),
-  "Sc": () => (/* reexport */ centroid),
-  "pb": () => (/* reexport */ circumCenter),
-  "kC": () => (/* reexport */ cross),
-  "Ph": () => (/* reexport */ det3),
-  "qw": () => (/* reexport */ distanceBetween),
-  "PI": () => (/* reexport */ distanceBetweenPointAndLine),
-  "tl": () => (/* reexport */ doesSegSegIntersect),
-  "AK": () => (/* reexport */ dot),
-  "Dg": () => (/* binding */ equal),
-  "JQ": () => (/* binding */ fromTo),
-  "Gk": () => (/* binding */ getClosestTo),
-  "AY": () => (/* binding */ getObjClosestTo),
-  "un": () => (/* reexport */ inCenter),
-  "sX": () => (/* binding */ interpolate),
-  "Zh": () => (/* reexport */ len),
-  "YH": () => (/* reexport */ lengthSquared),
-  "QG": () => (/* reexport */ lineLineIntersection),
-  "_r": () => (/* reexport */ manhattanDistanceBetween),
-  "Tp": () => (/* reexport */ manhattanLength),
-  "J6": () => (/* binding */ mean),
-  "GY": () => (/* reexport */ reverse),
-  "ay": () => (/* reexport */ reverseRotate),
-  "U1": () => (/* reexport */ rotate),
-  "$z": () => (/* reexport */ rotate90Degrees),
-  "UF": () => (/* reexport */ rotateNeg90Degrees),
-  "bA": () => (/* reexport */ scale),
-  "NW": () => (/* reexport */ segSegIntersection),
-  "Pz": () => (/* reexport */ squaredDistanceBetween),
-  "$6": () => (/* reexport */ squaredDistanceBetweenPointAndLineSegment),
-  "Hg": () => (/* reexport */ toLength),
-  "wP": () => (/* reexport */ toUnitVector),
-  "cm": () => (/* reexport */ transformAffine),
-  "Zb": () => (/* reexport */ transformLinear),
-  "Iu": () => (/* reexport */ translate)
+  CS: () => (/* reexport */ orient2d),
+  vh: () => (/* reexport */ centroid),
+  t2: () => (/* reexport */ circumCenter),
+  $A: () => (/* reexport */ cross),
+  XK: () => (/* reexport */ det3),
+  Sl: () => (/* reexport */ distanceBetween),
+  Po: () => (/* reexport */ distanceBetweenPointAndLine),
+  NV: () => (/* reexport */ doesSegSegIntersect),
+  Om: () => (/* reexport */ dot),
+  LC: () => (/* reexport */ equal),
+  e8: () => (/* reexport */ fromTo),
+  rk: () => (/* reexport */ getClosestTo),
+  qX: () => (/* reexport */ getObjClosestTo),
+  z: () => (/* reexport */ inCenter),
+  GW: () => (/* reexport */ interpolate),
+  Il: () => (/* reexport */ len),
+  w6: () => (/* reexport */ lengthSquared),
+  Eh: () => (/* reexport */ lineLineIntersection),
+  IF: () => (/* reexport */ manhattanDistanceBetween),
+  z0: () => (/* reexport */ manhattanLength),
+  i2: () => (/* reexport */ mean),
+  BE: () => (/* reexport */ reverse),
+  _h: () => (/* reexport */ reverseRotate),
+  e$: () => (/* reexport */ rotate),
+  It: () => (/* reexport */ rotate90Degrees),
+  I8: () => (/* reexport */ rotateNeg90Degrees),
+  hs: () => (/* reexport */ scale),
+  gc: () => (/* reexport */ segSegIntersection),
+  hD: () => (/* reexport */ squaredDistanceBetween),
+  LE: () => (/* reexport */ squaredDistanceBetweenPointAndLineSegment),
+  qe: () => (/* reexport */ toLength),
+  LD: () => (/* reexport */ toUnitVector),
+  qG: () => (/* reexport */ transformAffine),
+  cq: () => (/* reexport */ transformLinear),
+  Tl: () => (/* reexport */ translate)
 });
 
 ;// CONCATENATED MODULE: ./node_modules/big-float-ts/node/basic/two-product.js
@@ -98,9 +98,9 @@ function two_product_twoProduct(a, b) {
 
 //# sourceMappingURL=two-product.js.map
 ;// CONCATENATED MODULE: ./node_modules/big-float-ts/node/double-expansion/fast-expansion-sum.js
-
+// import { eCompress } from "./e-compress.js";
 // We *have* to do the below❗ The assignee is a getter❗ The assigned is a pure function❗
-const compress = (/* unused pure expression or super */ null && (eCompress));
+// const compress = eCompress;
 /**
  * Returns the result of adding two expansions.
  *
@@ -503,7 +503,7 @@ const scale_expansion_f = 134217729; // 2**27 + 1;
 const tp = (/* unused pure expression or super */ null && (twoProduct));
 const ts = (/* unused pure expression or super */ null && (twoSum));
 const fts = (/* unused pure expression or super */ null && (fastTwoSum));
-const scale_expansion_compress = (/* unused pure expression or super */ null && (eCompress));
+const compress = (/* unused pure expression or super */ null && (eCompress));
 /**
  * Returns the result of multiplying an expansion by a double.
  *
@@ -701,7 +701,9 @@ function expansionProduct(e, f) {
 //# sourceMappingURL=expansion-product.js.map
 ;// CONCATENATED MODULE: ./node_modules/big-float-ts/node/double-expansion/e-sign.js
 /**
- * Returns the sign of the given expansion.
+ * Returns the sign of the given expansion such that a negative value means a
+ * negative sign and a positive value means a positive sign, 0 meaning 0 of
+ * course.
  *
  * * see [Shewchuk](https://people.eecs.berkeley.edu/~jrs/papers/robustr.pdf)
  *
@@ -710,7 +712,7 @@ function expansionProduct(e, f) {
  *
  * @param e A floating point expansion with zeroes eliminated.
  */
-function e_sign_eSign(e) {
+function eSign(e) {
     return e[e.length - 1];
 }
 
@@ -732,15 +734,13 @@ function e_sign_eSign(e) {
  * @param b another floating point expansion
  */
 function eCompare(a, b) {
-    return e_sign_eSign(eDiff(a, b));
+    return eSign(eDiff(a, b));
 }
 
 //# sourceMappingURL=e-compare.js.map
 ;// CONCATENATED MODULE: ./node_modules/big-float-ts/node/double-expansion/e-abs.js
 
-
 // We *have* to do the below❗ The assignee is a getter❗ The assigned is a pure function❗
-const sign = (/* unused pure expression or super */ null && (eSign));
 const e_abs_negativeOf = eNegativeOf;
 /**
  * Returns the absolute value of the given floating point expansion.
@@ -818,8 +818,8 @@ function segSegIntersection(ab, cd) {
     //let r = rNumer / denom;
     //let s = sNumer / denom;
     // if (0 <= r && r <= 1 && 0 <= s && s <= 1)
-    if (e_sign_eSign(rNumer) * e_sign_eSign(denom) >= 0 && eCompare(eAbs(denom), eAbs(rNumer)) >= 0 &&
-        e_sign_eSign(sNumer) * e_sign_eSign(denom) >= 0 && eCompare(eAbs(denom), eAbs(sNumer)) >= 0) {
+    if (eSign(rNumer) * eSign(denom) >= 0 && eCompare(eAbs(denom), eAbs(rNumer)) >= 0 &&
+        eSign(sNumer) * eSign(denom) >= 0 && eCompare(eAbs(denom), eAbs(sNumer)) >= 0) {
         const r = eEstimate(rNumer) / eEstimate(denom);
         //return [a0 + r*(b0 - a0), a1 + r*(b1 - a1)];
         return [
@@ -1236,49 +1236,7 @@ function centroid(polygon) {
 }
 
 
-;// CONCATENATED MODULE: ./src/index.ts
-//==================================
-// 2d vector pure functions library
-//==================================
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/**
- * Three 2d points are a counter-clockwise turn if ccw > 0, clockwise if
- * ccw < 0, and colinear if ccw === 0 because ccw is a determinant that gives
- * twice the signed area of the triangle formed by the points a, b and c.
- * * **certified**
- * @param A The first point
- * @param B The second point
- * @param C The third point
- */
-const ccw = orient2d;
+;// CONCATENATED MODULE: ./src/from-to.ts
 /**
  * Returns the second 2-vector minus the first.
  * @param p the first vector
@@ -1287,6 +1245,9 @@ const ccw = orient2d;
 function fromTo(p, q) {
     return [q[0] - p[0], q[1] - p[1]];
 }
+
+
+;// CONCATENATED MODULE: ./src/interpolate.ts
 /**
  * Performs linear interpolation between two 2d points and returns the
  * resulting point.
@@ -1300,6 +1261,9 @@ function interpolate(p, q, t) {
         p[1] + (q[1] - p[1]) * t
     ];
 }
+
+
+;// CONCATENATED MODULE: ./src/mean.ts
 /**
  * Returns the mean of two 2d points.
  * @param ps the two points
@@ -1309,6 +1273,9 @@ function mean(ps) {
     const q = ps[1];
     return [(p[0] + q[0]) / 2, (p[1] + q[1]) / 2];
 }
+
+
+;// CONCATENATED MODULE: ./src/equal.ts
 /**
 * Returns true if two 2-vectors are identical (by value), false otherwise.
 * @param a a 2d vector
@@ -1317,6 +1284,10 @@ function mean(ps) {
 function equal(a, b) {
     return (a[0] === b[0] && a[1] === b[1]);
 }
+
+
+;// CONCATENATED MODULE: ./src/get-closest-to.ts
+
 /**
  * Returns the closest point to the array of 2d points or if the array is empty
  * returns undefined.
@@ -1336,6 +1307,10 @@ function getClosestTo(p, ps) {
     }
     return closestPoint;
 }
+
+
+;// CONCATENATED MODULE: ./src/get-obj-closest-to.ts
+
 /**
  * Returns the closest point to the array of 2d points by providing a distance
  * function. If the given array is empty, returns undefined.
@@ -1359,39 +1334,76 @@ function getObjClosestTo(p, ps, f) {
 }
 
 
-var __webpack_exports__ccw = __webpack_exports__.oH;
-var __webpack_exports__centroid = __webpack_exports__.Sc;
-var __webpack_exports__circumCenter = __webpack_exports__.pb;
-var __webpack_exports__cross = __webpack_exports__.kC;
-var __webpack_exports__det3 = __webpack_exports__.Ph;
-var __webpack_exports__distanceBetween = __webpack_exports__.qw;
-var __webpack_exports__distanceBetweenPointAndLine = __webpack_exports__.PI;
-var __webpack_exports__doesSegSegIntersect = __webpack_exports__.tl;
-var __webpack_exports__dot = __webpack_exports__.AK;
-var __webpack_exports__equal = __webpack_exports__.Dg;
-var __webpack_exports__fromTo = __webpack_exports__.JQ;
-var __webpack_exports__getClosestTo = __webpack_exports__.Gk;
-var __webpack_exports__getObjClosestTo = __webpack_exports__.AY;
-var __webpack_exports__inCenter = __webpack_exports__.un;
-var __webpack_exports__interpolate = __webpack_exports__.sX;
-var __webpack_exports__len = __webpack_exports__.Zh;
-var __webpack_exports__lengthSquared = __webpack_exports__.YH;
-var __webpack_exports__lineLineIntersection = __webpack_exports__.QG;
-var __webpack_exports__manhattanDistanceBetween = __webpack_exports__._r;
-var __webpack_exports__manhattanLength = __webpack_exports__.Tp;
-var __webpack_exports__mean = __webpack_exports__.J6;
-var __webpack_exports__reverse = __webpack_exports__.GY;
-var __webpack_exports__reverseRotate = __webpack_exports__.ay;
-var __webpack_exports__rotate = __webpack_exports__.U1;
-var __webpack_exports__rotate90Degrees = __webpack_exports__.$z;
-var __webpack_exports__rotateNeg90Degrees = __webpack_exports__.UF;
-var __webpack_exports__scale = __webpack_exports__.bA;
-var __webpack_exports__segSegIntersection = __webpack_exports__.NW;
-var __webpack_exports__squaredDistanceBetween = __webpack_exports__.Pz;
-var __webpack_exports__squaredDistanceBetweenPointAndLineSegment = __webpack_exports__.$6;
-var __webpack_exports__toLength = __webpack_exports__.Hg;
-var __webpack_exports__toUnitVector = __webpack_exports__.wP;
-var __webpack_exports__transformAffine = __webpack_exports__.cm;
-var __webpack_exports__transformLinear = __webpack_exports__.Zb;
-var __webpack_exports__translate = __webpack_exports__.Iu;
+;// CONCATENATED MODULE: ./src/index.ts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var __webpack_exports__ccw = __webpack_exports__.CS;
+var __webpack_exports__centroid = __webpack_exports__.vh;
+var __webpack_exports__circumCenter = __webpack_exports__.t2;
+var __webpack_exports__cross = __webpack_exports__.$A;
+var __webpack_exports__det3 = __webpack_exports__.XK;
+var __webpack_exports__distanceBetween = __webpack_exports__.Sl;
+var __webpack_exports__distanceBetweenPointAndLine = __webpack_exports__.Po;
+var __webpack_exports__doesSegSegIntersect = __webpack_exports__.NV;
+var __webpack_exports__dot = __webpack_exports__.Om;
+var __webpack_exports__equal = __webpack_exports__.LC;
+var __webpack_exports__fromTo = __webpack_exports__.e8;
+var __webpack_exports__getClosestTo = __webpack_exports__.rk;
+var __webpack_exports__getObjClosestTo = __webpack_exports__.qX;
+var __webpack_exports__inCenter = __webpack_exports__.z;
+var __webpack_exports__interpolate = __webpack_exports__.GW;
+var __webpack_exports__len = __webpack_exports__.Il;
+var __webpack_exports__lengthSquared = __webpack_exports__.w6;
+var __webpack_exports__lineLineIntersection = __webpack_exports__.Eh;
+var __webpack_exports__manhattanDistanceBetween = __webpack_exports__.IF;
+var __webpack_exports__manhattanLength = __webpack_exports__.z0;
+var __webpack_exports__mean = __webpack_exports__.i2;
+var __webpack_exports__reverse = __webpack_exports__.BE;
+var __webpack_exports__reverseRotate = __webpack_exports__._h;
+var __webpack_exports__rotate = __webpack_exports__.e$;
+var __webpack_exports__rotate90Degrees = __webpack_exports__.It;
+var __webpack_exports__rotateNeg90Degrees = __webpack_exports__.I8;
+var __webpack_exports__scale = __webpack_exports__.hs;
+var __webpack_exports__segSegIntersection = __webpack_exports__.gc;
+var __webpack_exports__squaredDistanceBetween = __webpack_exports__.hD;
+var __webpack_exports__squaredDistanceBetweenPointAndLineSegment = __webpack_exports__.LE;
+var __webpack_exports__toLength = __webpack_exports__.qe;
+var __webpack_exports__toUnitVector = __webpack_exports__.LD;
+var __webpack_exports__transformAffine = __webpack_exports__.qG;
+var __webpack_exports__transformLinear = __webpack_exports__.cq;
+var __webpack_exports__translate = __webpack_exports__.Tl;
 export { __webpack_exports__ccw as ccw, __webpack_exports__centroid as centroid, __webpack_exports__circumCenter as circumCenter, __webpack_exports__cross as cross, __webpack_exports__det3 as det3, __webpack_exports__distanceBetween as distanceBetween, __webpack_exports__distanceBetweenPointAndLine as distanceBetweenPointAndLine, __webpack_exports__doesSegSegIntersect as doesSegSegIntersect, __webpack_exports__dot as dot, __webpack_exports__equal as equal, __webpack_exports__fromTo as fromTo, __webpack_exports__getClosestTo as getClosestTo, __webpack_exports__getObjClosestTo as getObjClosestTo, __webpack_exports__inCenter as inCenter, __webpack_exports__interpolate as interpolate, __webpack_exports__len as len, __webpack_exports__lengthSquared as lengthSquared, __webpack_exports__lineLineIntersection as lineLineIntersection, __webpack_exports__manhattanDistanceBetween as manhattanDistanceBetween, __webpack_exports__manhattanLength as manhattanLength, __webpack_exports__mean as mean, __webpack_exports__reverse as reverse, __webpack_exports__reverseRotate as reverseRotate, __webpack_exports__rotate as rotate, __webpack_exports__rotate90Degrees as rotate90Degrees, __webpack_exports__rotateNeg90Degrees as rotateNeg90Degrees, __webpack_exports__scale as scale, __webpack_exports__segSegIntersection as segSegIntersection, __webpack_exports__squaredDistanceBetween as squaredDistanceBetween, __webpack_exports__squaredDistanceBetweenPointAndLineSegment as squaredDistanceBetweenPointAndLineSegment, __webpack_exports__toLength as toLength, __webpack_exports__toUnitVector as toUnitVector, __webpack_exports__transformAffine as transformAffine, __webpack_exports__transformLinear as transformLinear, __webpack_exports__translate as translate };
