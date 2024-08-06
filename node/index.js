@@ -30,7 +30,7 @@ export { det3 } from './matrix/det.js';
 export { fromTo } from './from-to.js';
 export { interpolate } from './interpolate.js';
 export { mean } from './mean.js';
-export { equal } from './equal';
+export { equal } from './equal.js';
 export { getClosestTo } from './get-closest-to.js';
-export { getObjClosestTo } from './get-obj-closest-to';
+export { getObjClosestTo } from './get-obj-closest-to.js';
 //# sourceMappingURL=index.js.map
