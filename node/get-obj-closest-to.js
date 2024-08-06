@@ -1,4 +1,4 @@
-import { squaredDistanceBetween } from "./distance-and-length/squared-distance-between";
+import { squaredDistanceBetween } from "./distance-and-length/squared-distance-between.js";
 /**
  * Returns the closest point to the array of 2d points by providing a distance
  * function. If the given array is empty, returns undefined.
