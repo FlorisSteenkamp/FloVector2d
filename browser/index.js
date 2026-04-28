@@ -20,48 +20,8 @@
 /******/ })();
 /******/ 
 /************************************************************************/
-var __webpack_exports__ = {};
 
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, {
-  CS: () => (/* reexport */ orient2d),
-  vh: () => (/* reexport */ centroid),
-  t2: () => (/* reexport */ circumCenter),
-  $A: () => (/* reexport */ cross),
-  XK: () => (/* reexport */ det3),
-  Sl: () => (/* reexport */ distanceBetween),
-  Po: () => (/* reexport */ distanceBetweenPointAndLine),
-  NV: () => (/* reexport */ doesSegSegIntersect),
-  Om: () => (/* reexport */ dot),
-  LC: () => (/* reexport */ equal),
-  e8: () => (/* reexport */ fromTo),
-  rk: () => (/* reexport */ getClosestTo),
-  qX: () => (/* reexport */ getObjClosestTo),
-  z: () => (/* reexport */ inCenter),
-  GW: () => (/* reexport */ interpolate),
-  Il: () => (/* reexport */ len),
-  w6: () => (/* reexport */ lengthSquared),
-  Eh: () => (/* reexport */ lineLineIntersection),
-  IF: () => (/* reexport */ manhattanDistanceBetween),
-  z0: () => (/* reexport */ manhattanLength),
-  i2: () => (/* reexport */ mean),
-  BE: () => (/* reexport */ reverse),
-  _h: () => (/* reexport */ reverseRotate),
-  e$: () => (/* reexport */ rotate),
-  It: () => (/* reexport */ rotate90Degrees),
-  I8: () => (/* reexport */ rotateNeg90Degrees),
-  hs: () => (/* reexport */ scale),
-  gc: () => (/* reexport */ segSegIntersection),
-  hD: () => (/* reexport */ squaredDistanceBetween),
-  LE: () => (/* reexport */ squaredDistanceBetweenPointAndLineSegment),
-  qe: () => (/* reexport */ toLength),
-  LD: () => (/* reexport */ toUnitVector),
-  qG: () => (/* reexport */ transformAffine),
-  cq: () => (/* reexport */ transformLinear),
-  Tl: () => (/* reexport */ translate)
-});
-
-;// CONCATENATED MODULE: ./node_modules/big-float-ts/node/basic/two-product.js
+;// ./node_modules/big-float-ts/node/basic/two-product.js
 const f = 134217729; // 2**27 + 1;
 /**
  * Returns the exact result of multiplying two doubles.
@@ -78,7 +38,7 @@ const f = 134217729; // 2**27 + 1;
  * @param a A double
  * @param b Another double
  */
-function two_product_twoProduct(a, b) {
+function twoProduct(a, b) {
     const x = a * b;
     //const [ah, al] = split(a);
     const c = f * a;
@@ -97,7 +57,7 @@ function two_product_twoProduct(a, b) {
 }
 
 //# sourceMappingURL=two-product.js.map
-;// CONCATENATED MODULE: ./node_modules/big-float-ts/node/double-expansion/fast-expansion-sum.js
+;// ./node_modules/big-float-ts/node/double-expansion/fast-expansion-sum.js
 // import { eCompress } from "./e-compress.js";
 // We *have* to do the below❗ The assignee is a getter❗ The assigned is a pure function❗
 // const compress = eCompress;
@@ -242,7 +202,7 @@ function merge(e, f) {
 }
 
 //# sourceMappingURL=fast-expansion-sum.js.map
-;// CONCATENATED MODULE: ./node_modules/big-float-ts/node/double-expansion/e-negative-of.js
+;// ./node_modules/big-float-ts/node/double-expansion/e-negative-of.js
 /**
  * Returns the negative of the given floating point expansion.
  * * see [Shewchuk](https://people.eecs.berkeley.edu/~jrs/papers/robustr.pdf)
@@ -259,7 +219,7 @@ function eNegativeOf(e) {
 }
 
 //# sourceMappingURL=e-negative-of.js.map
-;// CONCATENATED MODULE: ./node_modules/big-float-ts/node/double-expansion/e-diff.js
+;// ./node_modules/big-float-ts/node/double-expansion/e-diff.js
 
 
 // We *have* to do the below❗ The assignee is a getter❗ The assigned is a pure function❗
@@ -279,7 +239,7 @@ function eDiff(e, f) {
 }
 
 //# sourceMappingURL=e-diff.js.map
-;// CONCATENATED MODULE: ./node_modules/big-float-ts/node/double-expansion/e-estimate.js
+;// ./node_modules/big-float-ts/node/double-expansion/e-estimate.js
 /**
  * Returns the result of the given floating point expansion rounded to a double
  * floating point number.
@@ -303,7 +263,7 @@ function eEstimate(e) {
 }
 
 //# sourceMappingURL=e-estimate.js.map
-;// CONCATENATED MODULE: ./node_modules/big-float-ts/node/basic/two-diff.js
+;// ./node_modules/big-float-ts/node/basic/two-diff.js
 /**
  * Returns the exact result of subtracting b from a (as a floating point
  * expansion).
@@ -318,7 +278,7 @@ function twoDiff(a, b) {
 }
 
 //# sourceMappingURL=two-diff.js.map
-;// CONCATENATED MODULE: ./node_modules/big-float-ts/node/double-expansion/e-compress.js
+;// ./node_modules/big-float-ts/node/double-expansion/e-compress.js
 /**
  * Returns the result of compressing the given floating point expansion.
  *
@@ -335,7 +295,7 @@ function twoDiff(a, b) {
  * magnitude. If h != 0, none of the h_i will be zero. Furthermore, the largest
  * component h_n approximates h with an error smaller than ulp(h_n).
  */
-function e_compress_eCompress(e) {
+function eCompress(e) {
     //return e;
     const e_ = e.slice();
     const m = e_.length;
@@ -372,7 +332,7 @@ function e_compress_eCompress(e) {
 }
 
 //# sourceMappingURL=e-compress.js.map
-;// CONCATENATED MODULE: ./node_modules/big-float-ts/node/geometric-primitives/orient2d.js
+;// ./node_modules/big-float-ts/node/geometric-primitives/orient2d.js
 
 
 
@@ -440,7 +400,7 @@ function orient2dAdapt(A, B, C, detsum) {
     const bcx = B[0] - C[0];
     const acy = A[1] - C[1];
     const bcy = B[1] - C[1];
-    const b = eDiff(two_product_twoProduct(acx, bcy), two_product_twoProduct(acy, bcx));
+    const b = eDiff(twoProduct(acx, bcy), twoProduct(acy, bcx));
     let det = eEstimate(b);
     if (Math.abs(det) >= ccwerrboundB * detsum) {
         // Anti-clockwise or clockwise
@@ -460,18 +420,18 @@ function orient2dAdapt(A, B, C, detsum) {
     if (Math.abs(det) >= errbound) {
         return det;
     }
-    const a = eDiff(two_product_twoProduct(acxtail, bcy), two_product_twoProduct(acytail, bcx));
+    const a = eDiff(twoProduct(acxtail, bcy), twoProduct(acytail, bcx));
     const c = fastExpansionSum(b, a);
-    const d = eDiff(two_product_twoProduct(acx, bcytail), two_product_twoProduct(acy, bcxtail));
+    const d = eDiff(twoProduct(acx, bcytail), twoProduct(acy, bcxtail));
     const e = fastExpansionSum(c, d);
-    const f = eDiff(two_product_twoProduct(acxtail, bcytail), two_product_twoProduct(acytail, bcxtail));
+    const f = eDiff(twoProduct(acxtail, bcytail), twoProduct(acytail, bcxtail));
     let D = fastExpansionSum(e, f);
-    D = e_compress_eCompress(D);
+    D = eCompress(D);
     return D[D.length - 1];
 }
 
 //# sourceMappingURL=orient2d.js.map
-;// CONCATENATED MODULE: ./src/dot.ts
+;// ./src/dot.ts
 /**
  * Returns the dot (inner) product between two 2-vectors.
  * @param a the first vector
@@ -482,7 +442,7 @@ function dot(a, b) {
 }
 
 
-;// CONCATENATED MODULE: ./src/cross.ts
+;// ./src/cross.ts
 /**
  * Returns the cross product signed magnitude between two 2-vectors.
  * @param a the first vector
@@ -493,17 +453,21 @@ function cross(a, b) {
 }
 
 
-;// CONCATENATED MODULE: ./node_modules/big-float-ts/node/double-expansion/scale-expansion.js
+;// ./node_modules/big-float-ts/node/double-expansion/scale-expansion.js
+/* unused harmony import specifier */ var scale_expansion_twoProduct;
+/* unused harmony import specifier */ var twoSum;
+/* unused harmony import specifier */ var fastTwoSum;
+/* unused harmony import specifier */ var scale_expansion_eCompress;
 
 
 
 
 const scale_expansion_f = 134217729; // 2**27 + 1;
 // We *have* to do the below❗ The assignee is a getter❗ The assigned is a pure function❗
-const tp = (/* unused pure expression or super */ null && (twoProduct));
+const tp = (/* unused pure expression or super */ null && (scale_expansion_twoProduct));
 const ts = (/* unused pure expression or super */ null && (twoSum));
 const fts = (/* unused pure expression or super */ null && (fastTwoSum));
-const compress = (/* unused pure expression or super */ null && (eCompress));
+const compress = (/* unused pure expression or super */ null && (scale_expansion_eCompress));
 /**
  * Returns the result of multiplying an expansion by a double.
  *
@@ -664,14 +628,15 @@ function scaleExpansion2(b, e) {
 }
 
 //# sourceMappingURL=scale-expansion.js.map
-;// CONCATENATED MODULE: ./node_modules/big-float-ts/node/double-expansion/expansion-product.js
+;// ./node_modules/big-float-ts/node/double-expansion/expansion-product.js
+/* unused harmony import specifier */ var expansion_product_eCompress;
 
 
 
 // We *have* to do the below❗ The assignee is a getter❗ The assigned is a pure function❗
 const multByDouble = scaleExpansion;
 const expansion_product_add = fastExpansionSum;
-const expansion_product_compress = (/* unused pure expression or super */ null && (eCompress));
+const expansion_product_compress = (/* unused pure expression or super */ null && (expansion_product_eCompress));
 /**
  * Returns the product of two double floating point expansions.
  *
@@ -699,7 +664,7 @@ function expansionProduct(e, f) {
 }
 
 //# sourceMappingURL=expansion-product.js.map
-;// CONCATENATED MODULE: ./node_modules/big-float-ts/node/double-expansion/e-sign.js
+;// ./node_modules/big-float-ts/node/double-expansion/e-sign.js
 /**
  * Returns the sign of the given expansion such that a negative value means a
  * negative sign and a positive value means a positive sign, 0 meaning 0 of
@@ -717,7 +682,7 @@ function eSign(e) {
 }
 
 //# sourceMappingURL=e-sign.js.map
-;// CONCATENATED MODULE: ./node_modules/big-float-ts/node/double-expansion/e-compare.js
+;// ./node_modules/big-float-ts/node/double-expansion/e-compare.js
 
 
 /**
@@ -738,7 +703,7 @@ function eCompare(a, b) {
 }
 
 //# sourceMappingURL=e-compare.js.map
-;// CONCATENATED MODULE: ./node_modules/big-float-ts/node/double-expansion/e-abs.js
+;// ./node_modules/big-float-ts/node/double-expansion/e-abs.js
 
 // We *have* to do the below❗ The assignee is a getter❗ The assigned is a pure function❗
 const e_abs_negativeOf = eNegativeOf;
@@ -757,7 +722,7 @@ function eAbs(e) {
 }
 
 //# sourceMappingURL=e-abs.js.map
-;// CONCATENATED MODULE: ./node_modules/big-float-ts/node/basic/two-sum.js
+;// ./node_modules/big-float-ts/node/basic/two-sum.js
 /**
  * Returns the exact result of adding two doubles.
  *
@@ -779,7 +744,7 @@ function two_sum_twoSum(a, b) {
 //const R = a + b; const _ = R - a; const r = (a - (R - _)) + (b - _); return [r,R]
 
 //# sourceMappingURL=two-sum.js.map
-;// CONCATENATED MODULE: ./src/lines-and-segments/seg-seg-intersection.ts
+;// ./src/lines-and-segments/seg-seg-intersection.ts
 
 
 const epr = expansionProduct;
@@ -831,7 +796,7 @@ function segSegIntersection(ab, cd) {
 }
 
 
-;// CONCATENATED MODULE: ./src/lines-and-segments/does-seg-seg-intersect.ts
+;// ./src/lines-and-segments/does-seg-seg-intersect.ts
 
 /**
  * Returns true if the two given 2d line segments intersect, false otherwise.
@@ -850,7 +815,7 @@ function doesSegSegIntersect(a, b) {
 }
 
 
-;// CONCATENATED MODULE: ./src/lines-and-segments/line-line-intersection.ts
+;// ./src/lines-and-segments/line-line-intersection.ts
 /**
  * Find point where two lines intersect. Returns he point where the two lines
  * intersect or undefined if they don't intersect or are the same line.
@@ -878,7 +843,7 @@ function lineLineIntersection(l1, l2) {
 }
 
 
-;// CONCATENATED MODULE: ./src/affine-transformations/translate/translate.ts
+;// ./src/affine-transformations/translate/translate.ts
 // From: https://en.wikipedia.org/wiki/Affine_transformation
 // "If X is the point set of an affine space, then every affine transformation 
 // on X can be represented as the composition of a linear transformation on X 
@@ -892,7 +857,7 @@ function translate(a, b) {
 }
 
 
-;// CONCATENATED MODULE: ./src/affine-transformations/linear/rotate.ts
+;// ./src/affine-transformations/linear/rotate.ts
 function rotate(sinθ, cosθ, p) {
     function rotateByθ(p) {
         return [
@@ -905,7 +870,7 @@ function rotate(sinθ, cosθ, p) {
 }
 
 
-;// CONCATENATED MODULE: ./src/affine-transformations/linear/scale.ts
+;// ./src/affine-transformations/linear/scale.ts
 /**
  * Returns a scaled version of the given 2-vector.
  * @param p a vector
@@ -916,7 +881,7 @@ function scale(p, c) {
 }
 
 
-;// CONCATENATED MODULE: ./src/affine-transformations/linear/reverse.ts
+;// ./src/affine-transformations/linear/reverse.ts
 /**
  * Returns the given 2-vector reversed (i.e. scaled by -1).
  * @param p a vector
@@ -926,7 +891,7 @@ function reverse(p) {
 }
 
 
-;// CONCATENATED MODULE: ./src/affine-transformations/linear/reverse-rotate.ts
+;// ./src/affine-transformations/linear/reverse-rotate.ts
 /**
  * Returns a rotated (clockwise) version of the given 2-vector given the
  * sine and cosine of the angle.
@@ -942,7 +907,7 @@ function reverseRotate(sinθ, cosθ, p) {
 }
 
 
-;// CONCATENATED MODULE: ./src/affine-transformations/linear/rotate-90-degrees.ts
+;// ./src/affine-transformations/linear/rotate-90-degrees.ts
 /**
  * Returns a 90 degrees rotated version of the given 2-vector.
  * @param p a 2d vector
@@ -952,7 +917,7 @@ function rotate90Degrees(p) {
 }
 
 
-;// CONCATENATED MODULE: ./src/affine-transformations/linear/rotate-neg-90-degrees.ts
+;// ./src/affine-transformations/linear/rotate-neg-90-degrees.ts
 /**
 * Returns a negative 90 degrees rotated version of the given 2-vector.
 * @param p a 2d vector
@@ -962,7 +927,7 @@ function rotateNeg90Degrees(p) {
 }
 
 
-;// CONCATENATED MODULE: ./src/affine-transformations/linear/transform-linear.ts
+;// ./src/affine-transformations/linear/transform-linear.ts
 function transformLinear([[a, b], [c, d]], p) {
     function transform([x, y]) {
         return [
@@ -975,7 +940,7 @@ function transformLinear([[a, b], [c, d]], p) {
 }
 
 
-;// CONCATENATED MODULE: ./src/affine-transformations/transform-affine.ts
+;// ./src/affine-transformations/transform-affine.ts
 function transformAffine([[a, b], [c, d]], [r, s], p) {
     function transform([x, y]) {
         return [
@@ -988,7 +953,7 @@ function transformAffine([[a, b], [c, d]], [r, s], p) {
 }
 
 
-;// CONCATENATED MODULE: ./src/distance-and-length/to-unit-vector.ts
+;// ./src/distance-and-length/to-unit-vector.ts
 /**
  * Returns the given 2-vector scaled to a length of one.
  * @param p a vector
@@ -999,7 +964,7 @@ function toUnitVector(p) {
 }
 
 
-;// CONCATENATED MODULE: ./src/distance-and-length/to-length.ts
+;// ./src/distance-and-length/to-length.ts
 /**
  * Returns the given 2-vector scaled to the given length.
  * @param p a vector
@@ -1011,7 +976,7 @@ function toLength(p, length) {
 }
 
 
-;// CONCATENATED MODULE: ./src/distance-and-length/distance-between.ts
+;// ./src/distance-and-length/distance-between.ts
 /**
  * Returns the distance between two 2d points.
  * @param p a point
@@ -1024,7 +989,7 @@ function distanceBetween(p, q) {
 }
 
 
-;// CONCATENATED MODULE: ./src/distance-and-length/len.ts
+;// ./src/distance-and-length/len.ts
 /**
  * Returns the length of the given 2-vector.
  * @param p a 2d vector
@@ -1034,7 +999,7 @@ function len(p) {
 }
 
 
-;// CONCATENATED MODULE: ./src/distance-and-length/length-squared.ts
+;// ./src/distance-and-length/length-squared.ts
 /**
  * Returns the squared length of the given 2-vector.
  * @param p a vector
@@ -1044,7 +1009,7 @@ function lengthSquared(v) {
 }
 
 
-;// CONCATENATED MODULE: ./src/distance-and-length/manhattan-distance-between.ts
+;// ./src/distance-and-length/manhattan-distance-between.ts
 /**
  * Returns the Manhattan distance between two 2d points.
  * @param p a point.
@@ -1055,7 +1020,7 @@ function manhattanDistanceBetween(p, q) {
 }
 
 
-;// CONCATENATED MODULE: ./src/distance-and-length/manhattan-length.ts
+;// ./src/distance-and-length/manhattan-length.ts
 /**
  * Returns the Manhattan length of the given 2-vector.
  * @param p a vector
@@ -1065,7 +1030,7 @@ function manhattanLength(p) {
 }
 
 
-;// CONCATENATED MODULE: ./src/distance-and-length/distance-between-point-and-line.ts
+;// ./src/distance-and-length/distance-between-point-and-line.ts
 /**
  * Returns the distance between the given point and line.
  * * see https://en.wikipedia.org/wiki/Distance_from_a_point_to_a_line#Line_defined_by_two_points
@@ -1083,7 +1048,7 @@ function distanceBetweenPointAndLine(p, l) {
 }
 
 
-;// CONCATENATED MODULE: ./src/distance-and-length/squared-distance-between.ts
+;// ./src/distance-and-length/squared-distance-between.ts
 /**
  * Returns the squared distance between two 2d points.
  * @param p a point
@@ -1096,7 +1061,7 @@ function squaredDistanceBetween(p, q) {
 }
 
 
-;// CONCATENATED MODULE: ./src/distance-and-length/squared-distance-between-point-and-line-segment.ts
+;// ./src/distance-and-length/squared-distance-between-point-and-line-segment.ts
 
 /**
  * Returns the squared distance between the given point and line segment.
@@ -1118,7 +1083,7 @@ function squaredDistanceBetweenPointAndLineSegment(p, l) {
 }
 
 
-;// CONCATENATED MODULE: ./src/matrix/det.ts
+;// ./src/matrix/det.ts
 /**
  * Calculate the determinant of three 3d vectors, i.e. 3x3 matrix
  * @param x a 2d vector
@@ -1132,7 +1097,7 @@ function det3(x, y, z) {
 }
 
 
-;// CONCATENATED MODULE: ./src/triangle-centers/circum-center.ts
+;// ./src/triangle-centers/circum-center.ts
 
 
 /**
@@ -1152,7 +1117,7 @@ function circumCenter(triangle) {
 }
 
 
-;// CONCATENATED MODULE: ./src/triangle-centers/in-center.ts
+;// ./src/triangle-centers/in-center.ts
 
 /**
  * Returns the incenter of the given triangle.
@@ -1175,7 +1140,7 @@ function inCenter(triangle) {
 }
 
 
-;// CONCATENATED MODULE: ./src/triangle-centers/centroid.ts
+;// ./src/triangle-centers/centroid.ts
 /**
 * Returns the centroid of the given polygon, e.g. triangle. The polygon
 * must be simple, i.e. not self-intersecting.
@@ -1236,7 +1201,7 @@ function centroid(polygon) {
 }
 
 
-;// CONCATENATED MODULE: ./src/from-to.ts
+;// ./src/from-to.ts
 /**
  * Returns the second 2-vector minus the first.
  * @param p the first vector
@@ -1247,7 +1212,7 @@ function fromTo(p, q) {
 }
 
 
-;// CONCATENATED MODULE: ./src/interpolate.ts
+;// ./src/interpolate.ts
 /**
  * Performs linear interpolation between two 2d points and returns the
  * resulting point.
@@ -1263,7 +1228,7 @@ function interpolate(p, q, t) {
 }
 
 
-;// CONCATENATED MODULE: ./src/mean.ts
+;// ./src/mean.ts
 /**
  * Returns the mean of two 2d points.
  * @param ps the two points
@@ -1275,7 +1240,7 @@ function mean(ps) {
 }
 
 
-;// CONCATENATED MODULE: ./src/equal.ts
+;// ./src/equal.ts
 /**
 * Returns true if two 2-vectors are identical (by value), false otherwise.
 * @param a a 2d vector
@@ -1286,7 +1251,7 @@ function equal(a, b) {
 }
 
 
-;// CONCATENATED MODULE: ./src/get-closest-to.ts
+;// ./src/get-closest-to.ts
 
 /**
  * Returns the closest point to the array of 2d points or if the array is empty
@@ -1309,7 +1274,7 @@ function getClosestTo(p, ps) {
 }
 
 
-;// CONCATENATED MODULE: ./src/get-obj-closest-to.ts
+;// ./src/get-obj-closest-to.ts
 
 /**
  * Returns the closest point to the array of 2d points by providing a distance
@@ -1334,7 +1299,7 @@ function getObjClosestTo(p, ps, f) {
 }
 
 
-;// CONCATENATED MODULE: ./src/index.ts
+;// ./src/index.ts
 
 
 
@@ -1371,39 +1336,4 @@ function getObjClosestTo(p, ps, f) {
 
 
 
-var __webpack_exports__ccw = __webpack_exports__.CS;
-var __webpack_exports__centroid = __webpack_exports__.vh;
-var __webpack_exports__circumCenter = __webpack_exports__.t2;
-var __webpack_exports__cross = __webpack_exports__.$A;
-var __webpack_exports__det3 = __webpack_exports__.XK;
-var __webpack_exports__distanceBetween = __webpack_exports__.Sl;
-var __webpack_exports__distanceBetweenPointAndLine = __webpack_exports__.Po;
-var __webpack_exports__doesSegSegIntersect = __webpack_exports__.NV;
-var __webpack_exports__dot = __webpack_exports__.Om;
-var __webpack_exports__equal = __webpack_exports__.LC;
-var __webpack_exports__fromTo = __webpack_exports__.e8;
-var __webpack_exports__getClosestTo = __webpack_exports__.rk;
-var __webpack_exports__getObjClosestTo = __webpack_exports__.qX;
-var __webpack_exports__inCenter = __webpack_exports__.z;
-var __webpack_exports__interpolate = __webpack_exports__.GW;
-var __webpack_exports__len = __webpack_exports__.Il;
-var __webpack_exports__lengthSquared = __webpack_exports__.w6;
-var __webpack_exports__lineLineIntersection = __webpack_exports__.Eh;
-var __webpack_exports__manhattanDistanceBetween = __webpack_exports__.IF;
-var __webpack_exports__manhattanLength = __webpack_exports__.z0;
-var __webpack_exports__mean = __webpack_exports__.i2;
-var __webpack_exports__reverse = __webpack_exports__.BE;
-var __webpack_exports__reverseRotate = __webpack_exports__._h;
-var __webpack_exports__rotate = __webpack_exports__.e$;
-var __webpack_exports__rotate90Degrees = __webpack_exports__.It;
-var __webpack_exports__rotateNeg90Degrees = __webpack_exports__.I8;
-var __webpack_exports__scale = __webpack_exports__.hs;
-var __webpack_exports__segSegIntersection = __webpack_exports__.gc;
-var __webpack_exports__squaredDistanceBetween = __webpack_exports__.hD;
-var __webpack_exports__squaredDistanceBetweenPointAndLineSegment = __webpack_exports__.LE;
-var __webpack_exports__toLength = __webpack_exports__.qe;
-var __webpack_exports__toUnitVector = __webpack_exports__.LD;
-var __webpack_exports__transformAffine = __webpack_exports__.qG;
-var __webpack_exports__transformLinear = __webpack_exports__.cq;
-var __webpack_exports__translate = __webpack_exports__.Tl;
-export { __webpack_exports__ccw as ccw, __webpack_exports__centroid as centroid, __webpack_exports__circumCenter as circumCenter, __webpack_exports__cross as cross, __webpack_exports__det3 as det3, __webpack_exports__distanceBetween as distanceBetween, __webpack_exports__distanceBetweenPointAndLine as distanceBetweenPointAndLine, __webpack_exports__doesSegSegIntersect as doesSegSegIntersect, __webpack_exports__dot as dot, __webpack_exports__equal as equal, __webpack_exports__fromTo as fromTo, __webpack_exports__getClosestTo as getClosestTo, __webpack_exports__getObjClosestTo as getObjClosestTo, __webpack_exports__inCenter as inCenter, __webpack_exports__interpolate as interpolate, __webpack_exports__len as len, __webpack_exports__lengthSquared as lengthSquared, __webpack_exports__lineLineIntersection as lineLineIntersection, __webpack_exports__manhattanDistanceBetween as manhattanDistanceBetween, __webpack_exports__manhattanLength as manhattanLength, __webpack_exports__mean as mean, __webpack_exports__reverse as reverse, __webpack_exports__reverseRotate as reverseRotate, __webpack_exports__rotate as rotate, __webpack_exports__rotate90Degrees as rotate90Degrees, __webpack_exports__rotateNeg90Degrees as rotateNeg90Degrees, __webpack_exports__scale as scale, __webpack_exports__segSegIntersection as segSegIntersection, __webpack_exports__squaredDistanceBetween as squaredDistanceBetween, __webpack_exports__squaredDistanceBetweenPointAndLineSegment as squaredDistanceBetweenPointAndLineSegment, __webpack_exports__toLength as toLength, __webpack_exports__toUnitVector as toUnitVector, __webpack_exports__transformAffine as transformAffine, __webpack_exports__transformLinear as transformLinear, __webpack_exports__translate as translate };
+export { orient2d as ccw, centroid, circumCenter, cross, det3, distanceBetween, distanceBetweenPointAndLine, doesSegSegIntersect, dot, equal, fromTo, getClosestTo, getObjClosestTo, inCenter, interpolate, len, lengthSquared, lineLineIntersection, manhattanDistanceBetween, manhattanLength, mean, reverse, reverseRotate, rotate, rotate90Degrees, rotateNeg90Degrees, scale, segSegIntersection, squaredDistanceBetween, squaredDistanceBetweenPointAndLineSegment, toLength, toUnitVector, transformAffine, transformLinear, translate };
